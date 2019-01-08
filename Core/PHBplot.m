@@ -121,3 +121,68 @@ saveas(fig1,figFilePath,outputFigType)
 end
 
 
+%% Plot all PHBs for ROI
+
+ clear phbOutletArray
+ 
+ allPHBs = dir(filepath);
+
+ for i = 1:length(targetList) 
+
+     targetPHB = targetList(i);
+    fileName = allPHBs(targetPHB).name;
+    
+    word1Location = strfind(fileName, 'HypsoPeak');
+    word2Location = strfind(fileName, 'Pour');
+    inBetweenText = fileName(word1Location+9:word2Location-1);
+    hypsoPeak = str2double(inBetweenText);
+    
+    word3Location = strfind(fileName, 'Elevation');
+    word4Location = strfind(fileName, 'Super');
+    inBetweenText = fileName(word3Location+9:word4Location-1);
+    outlet = str2double(inBetweenText);
+    
+    deltaH = hypsoPeak-outlet;
+   
+ 
+    phbOutletArray(i,1) = outlet;
+    phbOutletArray(i,2)=hypsoPeak;   
+ end
+ 
+ modeOutletArray = phbOutletArray(:,[1,2]);
+modeOutletArray(any(isnan(modeOutletArray), 2), :) = [];
+zeroIndices = find(modeOutletArray(:,2)==0);
+modeOutletArray(zeroIndices,:)=[];
+
+modes = modeOutletArray(:,2)
+outlets = modeOutletArray(:,1)
+
+
+
+modes = modeOutletArray(:,2)
+outlets = modeOutletArray(:,1)
+
+%% Make all ROI PHB plot
+
+figure(1)
+hold on
+grid on
+set(gca,'xtick',[0:1000:peakElevation], 'Linewidth', 1.5)
+set(gca,'ytick',[0:500:peakElevation], 'Linewidth', 1.5)
+set(gca,'fontname', 'Arial','FontSize',25, 'fontweight', 'bold')
+
+plot(outlets,modes,'.','color',plotColor,'MarkerSize', markerSize);
+
+ylim([0 peakElevation]);
+xlim([0 peakElevation]);
+
+
+ylabel('Modal elevation [m]', 'Fontsize', 25, 'Fontweight', 'bold','Interpreter', 'none')
+xlabel('Outlet elevation [m]', 'Fontsize', 25, 'Fontweight', 'bold', 'Interpreter', 'none')
+
+%%
+
+figName = [groupArea,'_hBench_vs_hChange_allSupercatchments.png']
+figFilePath = fullfile(figureOutputFilePath, figName);
+fig1 = gcf;
+saveas(fig1,figFilePath,outputFigType)
