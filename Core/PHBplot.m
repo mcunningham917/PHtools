@@ -11,6 +11,7 @@ addpath(topoToolboxFilePath);
 figureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'Figures');
 supercatchmentFigureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'Figures','SupercatchmentPHBs');
 mkdir(figureOutputFilePath);
+mkdir(supercatchmentFigureOutputFilePath);
 
 
 for count =supercatchmentNum
