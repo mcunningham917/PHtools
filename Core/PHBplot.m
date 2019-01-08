@@ -124,7 +124,7 @@ end
 
 %% Plot all PHBs for ROI
 
- clear phbOutletArray
+ 
  
  allPHBs = dir(filepath);
 
