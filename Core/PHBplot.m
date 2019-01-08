@@ -16,7 +16,7 @@ for count =supercatchmentNum
     clf;
     clear phbOutletArray
     
-peakElevation = 4000;
+peakElevation = peakElevationForOutputFig;
 plotColor = 'b'
 markerSize = 25;
 supercatchmentNum =count;
