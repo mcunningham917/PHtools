@@ -8,7 +8,7 @@
 
 Defaults;
 addpath(topoToolboxFilePath); 
-figureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'FigureOutput')
+figureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'Figures')
 mkdir(figureOutputFilePath);
 
 

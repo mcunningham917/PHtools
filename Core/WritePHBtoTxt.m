@@ -125,7 +125,7 @@ realFirstOrderStreamList=realFirstOrderStreamList(realFirstOrderStreamList>0);
                 ModeOutletPair = [benchOutletElevation, hypsoPeakElevation]; 
              
                 benchOutputFileName = ['HypsoPeak', hypsoPeakName,'PourPointElevation',num2str(benchOutletElevation),...
-                    'Supercatchment',num2str(streamSupercatchment),'StreamNum',num2str(streamNum)];
+                    'Supercatchment',num2str(streamSupercatchment),'StreamNum',num2str(streamNum),'.txt'];
 
                fullOutputFileForSuper = fullfile(allSupercatchmentPHBfilePath, benchOutputFileName);
                
