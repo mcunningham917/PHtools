@@ -8,7 +8,8 @@
 
 Defaults;
 addpath(topoToolboxFilePath); 
-figureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'Figures')
+figureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'Figures','SupercatchmentPHBs');
+supercatchmentFigureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'Figures','SupercatchmentPHBs');
 mkdir(figureOutputFilePath);
 
 
@@ -115,7 +116,7 @@ xlabel('Outlet elevation [m]', 'Fontsize', 25, 'Fontweight', 'bold', 'Interprete
 %% Save figure
 
 figName = [supercatchmentBenchFolderName,'_hBench_vs_hChange.png']
-figFilePath = fullfile(figureOutputFilePath, figName);
+figFilePath = fullfile(supercatchmentFigureOutputFilePath, figName);
 fig1 = gcf;
 saveas(fig1,figFilePath,outputFigType)
 end
@@ -141,8 +142,6 @@ end
     word4Location = strfind(fileName, 'Super');
     inBetweenText = fileName(word3Location+9:word4Location-1);
     outlet = str2double(inBetweenText);
-    
-    deltaH = hypsoPeak-outlet;
    
  
     phbOutletArray(i,1) = outlet;
