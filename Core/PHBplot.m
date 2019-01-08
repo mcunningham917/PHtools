@@ -8,7 +8,7 @@
 
 Defaults;
 addpath(topoToolboxFilePath); 
-figureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'Figures','SupercatchmentPHBs');
+figureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'Figures');
 supercatchmentFigureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'Figures','SupercatchmentPHBs');
 mkdir(figureOutputFilePath);
 
