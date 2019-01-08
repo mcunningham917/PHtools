@@ -12,9 +12,6 @@
 
 %% Set variables
 
-Defaults;
-addpath(topoToolboxFilePath); 
-
 pourPointElevationStep = 25; % Step elevation height--vertical spacing of catchment elevations
 pourPointElevationSensitivity = 10; % Variability around each step height
 streamNodeThreshNum=2777; %In pixels, area threshold required to define channel head (at 30 m pixel size, 2777 is 2.5 sq. km)
