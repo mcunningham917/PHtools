@@ -18,7 +18,8 @@ The PH algorithm involves two routines:
 
 ### Step 1: Hypsometry of progressive (nested) subcatchments 
 
-Traverse upstream from base level to main drainage divide along chains (flowpaths) in supplied DEM
+Traverse upstream from base level to main drainage divide along chains (flowpaths) in supplied DEM.
+
 Record the modal elevation of the catchment draining to the (progressively higher) position on each chain
 
 ### Step 2: Progressive Hypomsetric Bench (PHB) Identification
