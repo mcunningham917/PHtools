@@ -1,6 +1,8 @@
 # PHtools
 
-PHtools provides a set of Matlab functions for analyzing the hypsometry of drainage basins in a provided set of digital elevation models. The perform the Progressive Hypsometry Algorithm (PH) described in Cunningham et al. (2019). The aim is specifically to demonstrate how hypsometric maxima are distributed in the landscape. Users can create PH plots by supplying catchment DEMs.
+PHtools provides a set of Matlab functions for analyzing the hypsometry of drainage basins in a provided set of digital elevation models. It performs the Progressive Hypsometry Algorithm (PH) described in Cunningham et al. (2019). The aim is specifically to demonstrate how hypsometric maxima are distributed in the landscape. 
+
+Example output is available at [PHdoc](https://mcunningham917.github.io/PHdoc/). Users can create PH plots by supplying catchment DEMs.
 
 ## Requirements
 
