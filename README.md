@@ -26,7 +26,7 @@ Record the modal elevation of the catchment draining to the (progressively highe
 
 Identify nested subcatchments with similar modal elevation, i.e., PHBs.
 
-### Output
+## Output
 
 PHtools generates and writes to a data repository, PHanalysis. 
 
