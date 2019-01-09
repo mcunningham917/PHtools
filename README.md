@@ -14,7 +14,7 @@ Code is separated into two folders: `Core/`, which contains the scripts need to 
 
 ## Basic Operation
 
-The PH routine involves two routines: 
+The PH algorithm involves two routines: 
 
 ### Step 1:Hypsometry of progressive (nested) subcatchments 
 
