@@ -16,16 +16,18 @@ Code is separated into two folders: `Core/`, which contains the scripts need to 
 
 The PH algorithm involves two routines: 
 
-### Step 1:Hypsometry of progressive (nested) subcatchments 
+### Step 1: Hypsometry of progressive (nested) subcatchments 
 
-Traverse upstream along chains (flowpaths) in supplied DEM and record the modal elevation of the catchment draining to (progressively higher) position on stream network.
+Traverse upstream from base level to main drainage divide along chains (flowpaths) in supplied DEM
+Record the modal elevation of the catchment draining to the (progressively higher) position on each chain
 
-### Step 2:Progressive Hypomsetric Bench (PHB) Identification
+### Step 2: Progressive Hypomsetric Bench (PHB) Identification
 
-Indentify groups of nested subcatchments with similar modal elevation, PHBs.
+Identify nested subcatchments with similar modal elevation, i.e., PHBs.
 
 ### Output
-PHtools writes the data repository, PHanalysis. 
+
+PHtools generates and writes to a data repository, PHanalysis. 
 
 **Step 1:** Folder containing a txt file for each flow path: `PHanalysis/ROI/Subcatchments/25mStep`
 **Step 2:** Folder containing a txt file for each PHB: `PHanalysis/ROI/PHBs/AllSupercatchments`
