@@ -20,7 +20,7 @@ baseLevelOutlet =0;
 %% Input and output files
 
 filepath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt')
-supercatchmentFigureFilepath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt','Supercatchments')
+supercatchmentFigureFilepath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt_b','Supercatchments')
 roiFileName = [groupArea, '_allPHBs.txt']
 
 

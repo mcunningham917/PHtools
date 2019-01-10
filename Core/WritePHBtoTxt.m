@@ -19,7 +19,7 @@ nanFlag = -32768;
 allROIPHBcount=1;
 %% 
 for count = supercatchmentNum
-
+    clear supercatchmentPHBArray
     PHBCount=1;
     streamSupercatchment = count;
 
@@ -36,7 +36,7 @@ for count = supercatchmentNum
     allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt');
     outputFileNameROI = [groupArea,'_allPHBs.txt'];
     
-    SupercatchmentBenchFiles = fullfile(phAnalysisFilePath, groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt',supercatchmentOutFileName);
+    SupercatchmentBenchFiles = fullfile(phAnalysisFilePath, groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt_b',supercatchmentOutFileName);
     
     outputFileName = [supercatchmentFileName,'_allOutletModePairs.txt'];
 
