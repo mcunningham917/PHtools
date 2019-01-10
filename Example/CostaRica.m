@@ -2,6 +2,7 @@
 
 Defaults
 addpath(phToolsPath)
+addpath(topoToolboxFilePath)
 
 %% Define job parameters, include Region, supercatchment
 
