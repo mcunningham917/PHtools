@@ -21,7 +21,7 @@ pixelLength = 30;
 nanFlag = -32768;
 
 %% 
-for count = 9
+for count = supercatchmentNum
 
     
     streamSupercatchment = count;
@@ -29,12 +29,13 @@ for count = 9
     supercatchmentFilePath = fullfile(phDataFilePath,groupArea,'Supercatchments');
     supercatchmentFileName = ['Supercatchment', num2str(streamSupercatchment)];
     supercatchmentDemName = [groupArea, 'Supercatchment', num2str(streamSupercatchment),'.tif']
+    PHBOutputFileName = [groupArea, 'Supercatchment', num2str(count), '_allPHBs.tif'];
 
     %Input list of (outlet, mode) pairs
     progressivePourPointSubcatchmentFilePath = fullfile(phAnalysisFilePath,groupArea,'Subcatchments','25mStep', num2str(supercatchmentFileName));
     
     %Output file path for PHB layer
-    allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,'PHBs', 'Cusum02_BenchLength3Steps','AllSupercatchments');
+    allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,'PHBs', 'Cusum02_BenchLength3Steps','AllSupercatchmentTiffs');
     
    %Ouput file path for polygon layer
     %allSupercatchmentPHBforPolygons = fullfile(phAnalysisFilePath,'Cusum02_BenchLength3Steps', 'AllSupercatchments_ForPolygons');
@@ -48,6 +49,11 @@ for count = 9
     
     [supercatchmentDemArray, supercatchmentDemGrid, supercatchmentDemInfo, supercatchmentGeospatialReferenceArray] =...
         loadDEM(supercatchmentFilePath, supercatchmentDemName, nanFlag);
+    
+    supercatchmentDEMArrayForPHB = supercatchmentDemArray;
+    supercatchmentDEMArrayForPHBIX = find(~isnan(supercatchmentDemArray));
+    supercatchmentDEMArrayForPHB(supercatchmentDEMArrayForPHBIX)=1;
+    
 
     demSinksFilled = fillsinks(supercatchmentDemGrid);
     flowDirectionObj = FLOWobj(demSinksFilled);
@@ -59,7 +65,7 @@ for count = 9
     
 
     %Get list of chains
-    clear firstOrderStreamPath
+    clear firstOrderStreamPath firstOrderStreamList
     
     firstOrderStreamPath = dir(progressivePourPointSubcatchmentFilePath);
 
@@ -148,48 +154,8 @@ for count = 9
                         
                         hypsoPeakElevationIndices = find(finalDrainageBasinArray>=(hypsoPeakElevation-spillOverElevations) &...
                             finalDrainageBasinArray<=(hypsoPeakElevation+spillOverElevations));
-            
-                        hypsoPeakToDivideIndices = find(finalDrainageBasinArray>=(hypsoPeakElevation));
-                        hypsoPeakToDivideArray = finalDrainageBasinArray;
-                        hypsoPeakToDivideArray(hypsoPeakToDivideIndices)=hypsoPeakElevation;
-            
-                        finalDrainageBasinArray(hypsoPeakElevationIndices)=hypsoPeakElevation;
-            
-                        finalDrainageBasinArray(finalDrainageBasinArray<hypsoPeakElevation & finalDrainageBasinArray>0) = 1;
-                        hypsoPeakToDivideArray(hypsoPeakToDivideArray<hypsoPeakElevation & hypsoPeakToDivideArray>0) = 1;
-            
-            
-                        aboveHypsoPeakElevationIndices = find(finalDrainageBasinArray>hypsoPeakElevation+spillOverElevations);
-                        finalDrainageBasinArray(aboveHypsoPeakElevationIndices) = 1;
-            
-                        aboveAndBelowHypsoPeakArray = finalDrainageBasinArray;
-            
-                        finalDrainageBasinArray(finalDrainageBasinArray~=hypsoPeakElevation) = NaN; 
-                        hypsoPeakToDivideArray(hypsoPeakToDivideArray~=hypsoPeakElevation) = NaN; 
-            
-                        % Name PHBs according to (mode, outlet) pair. Make
-                        % sure all modal elevations are 4 digits.
-                                if(hypsoPeakElevation<1000)
-                                    hypsoPeakName = num2str( hypsoPeakElevation, '%04d' );
-                                else
-                                    hypsoPeakName = num2str(hypsoPeakElevation)
-                                end
-                                
-                                if(max(max(finalDrainageBasinArray)>0) && sum(sum(~isnan(finalDrainageBasinArray)))>0)
-            
-                                PHBOutputFileName = ['HypsoPeak', hypsoPeakName,'PourPointElevation',num2str(subcatchmentOutletElevation),...
-                                    'Supercatchment',num2str(streamSupercatchment),'StreamNum',num2str(streamNum)];
-
-                                fullOutputFileForMaster = fullfile(allSupercatchmentPHBfilePath, PHBOutputFileName);
-                                %fullOutputFileForPolygons = fullfile(allSupercatchmentBenchFilesForPolygons, PHBOutputFileName);
-                    
                         
-                                SubcatchmentWrite(finalDrainageBasinArray, supercatchmentGeospatialReferenceArray,supercatchmentDemInfo,...
-                                    nanFlag, fullOutputFileForMaster) 
-                
-                                else 
-                                end
-                
+                        supercatchmentDEMArrayForPHB(hypsoPeakElevationIndices)=hypsoPeakElevation;
 
                     else
             
@@ -222,52 +188,24 @@ for count = 9
                     finalDrainageBasinArray = ExtractSubcatchmentDEM(flowDirectionObj, supercatchmentDemArray,...
                     subcatchmentOutletX, subcatchmentOutletY);
         
-                    finalDrainageBasinArrayArea = finalDrainageBasinArray(~isnan(finalDrainageBasinArray));
-                    finalDrainageBasinArrayAreaNum = length(finalDrainageBasinArrayArea)*pixelLength^2;
+    
     
                     hypsoPeakElevationIndices = find(finalDrainageBasinArray>=(hypsoPeakElevation-spillOverElevations) & finalDrainageBasinArray<=(hypsoPeakElevation+spillOverElevations));
-            
-                    hypsoPeakToDivideIndices = find(finalDrainageBasinArray>=(hypsoPeakElevation));
-                    hypsoPeakToDivideArray = finalDrainageBasinArray;
-                    hypsoPeakToDivideArray(hypsoPeakToDivideIndices)=hypsoPeakElevation;
-            
-                    finalDrainageBasinArray(hypsoPeakElevationIndices)=hypsoPeakElevation;
-            
-                    finalDrainageBasinArray(finalDrainageBasinArray<hypsoPeakElevation & finalDrainageBasinArray>0) = 1;
-                    hypsoPeakToDivideArray(hypsoPeakToDivideArray<hypsoPeakElevation & hypsoPeakToDivideArray>0) = 1;
-            
-                    aboveHypsoPeakElevationIndices = find(finalDrainageBasinArray>hypsoPeakElevation+spillOverElevations);
-                    finalDrainageBasinArray(aboveHypsoPeakElevationIndices) = 1;
-            
-                    aboveAndBelowHypsoPeakArray = finalDrainageBasinArray;
-            
-                    finalDrainageBasinArray(finalDrainageBasinArray~=hypsoPeakElevation) = NaN; 
-                    hypsoPeakToDivideArray(hypsoPeakToDivideArray~=hypsoPeakElevation) = NaN; 
-
-                        if(max(max(finalDrainageBasinArray)>0) && sum(sum(~isnan(finalDrainageBasinArray)))>0)
-                
-                            if(hypsoPeakElevation<1000)
-                                hypsoPeakName = num2str( hypsoPeakElevation, '%04d' );
-                            else
-                                hypsoPeakName = num2str(hypsoPeakElevation)
-                            end
-            
-                            PHBOutputFileName = ['HypsoPeak', hypsoPeakName,'PourPointElevation',num2str(subcatchmentOutletElevation),...
-                                'Supercatchment',num2str(streamSupercatchment),'StreamNum',num2str(streamNum)];
-
-                            fullOutputFileForMaster = fullfile(allSupercatchmentPHBfilePath, PHBOutputFileName);
-                            %fullOutputFileForPolygons = fullfile(allSupercatchmentBenchFilesForPolygons, PHBOutputFileName);
-
-                            SubcatchmentWrite(finalDrainageBasinArray, supercatchmentGeospatialReferenceArray,supercatchmentDemInfo,...
-                                nanFlag, fullOutputFileForMaster) 
+ 
                         
-                            %SubcatchmentWrite(aboveAndBelowHypsoPeakArray, supercatchmentGeospatialReferenceArray,supercatchmentDemInfo,...
-                                %nanFlag, fullOutputFileForPolygons) 
-                        
+                    supercatchmentDEMArrayForPHB(hypsoPeakElevationIndices)=hypsoPeakElevation;
+                   
 
-                        else
-                        end
+                        
+                        
                     end
+                    
+                    supercatchmentDEMArrayForPHB(supercatchmentDEMArrayForPHB==1) = NaN;   
+                    
+                    fullOutputFileForMaster = fullfile(allSupercatchmentPHBfilePath, PHBOutputFileName);
+                    
+                    SubcatchmentWrite(supercatchmentDEMArrayForPHB, supercatchmentGeospatialReferenceArray,supercatchmentDemInfo,...
+                                nanFlag, fullOutputFileForMaster); 
 
             end
         end

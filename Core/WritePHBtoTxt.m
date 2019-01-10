@@ -10,8 +10,8 @@
 %% Set variables
 
 
-Defaults;
-addpath(topoToolboxFilePath); 
+
+
 
 
 
@@ -37,7 +37,7 @@ for count = supercatchmentNum
     progressivePourPointSubcatchmentFilePath = fullfile(fullfile(phAnalysisFilePath,groupArea,'Subcatchments','25mStep', num2str(supercatchmentFileName)));
     
     %Output file path for PHB layer
-    allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchments');
+    allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt');
 
     mkdir(allSupercatchmentPHBfilePath);
 
@@ -123,6 +123,25 @@ realFirstOrderStreamList=realFirstOrderStreamList(realFirstOrderStreamList>0);
                 end
           
                 ModeOutletPair = [benchOutletElevation, hypsoPeakElevation]; 
+                
+                fnam='stop3.txt'; % <data file
+                hdr={'Var_no','Acc','Dcc','Vcrs','Fcs','Vmax','Sure'}; % First header
+                hdr2={'No','m/s2','m/s2','km/h','kg', 'm/s','s'}; % Second Header
+                m=magic(7) %data
+            % the engine
+                txt=sprintf('%s\t %s\r\t',hdr{:},hdr2{:});
+                txt(end)='';
+                dlmwrite(fnam,txt,'');
+                   dlmwrite(fnam,m,'-append','delimiter','\t');
+% the result
+                
+                fmt = repmat('%s\t ', 1, length(hdr));
+                fmt(end:end+1) = '\n';
+                fid = fopen(fnam, 'w');
+                fprintf(fid, fmt, hdr{:});
+                fprintf(fid, fmt, hdr2{:});
+                fclose(fid);
+                dlmwrite(fnam,m,'-append','delimiter','\t');
              
                 benchOutputFileName = ['HypsoPeak', hypsoPeakName,'PourPointElevation',num2str(benchOutletElevation),...
                     'Supercatchment',num2str(streamSupercatchment),'StreamNum',num2str(streamNum),'.txt'];
