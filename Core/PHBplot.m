@@ -6,7 +6,6 @@
 % 
 %
 
-
 count = supercatchmentNum;
 
 figureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'Figures');
@@ -39,7 +38,7 @@ for i = 1:length(allPHBs)
     end
 end
 
-for k = supercatchmentNum
+
 %%
 targetList = 1:length(allPHBList)
 
@@ -56,14 +55,14 @@ for i = 1:length(targetList)
     inBetweenTextSuper = fileName(superWordLocation1+14:superWordLocation2-1);
     superNum = str2double(inBetweenTextSuper); 
     
-    if(superNum==supercatchmentNum)
     
     supercatchmentFigureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'Figures','SupercatchmentPHBs');
     mkdir(supercatchmentFigureOutputFilePath);
     
-    benchSuperName = ['Supercatchment', num2str(superNum),'PHBs']
-    supercatchmentPHBFileName = ['Supercatchment',num2str(superNum),'_allOutletModePairs.txt'];
-    phbOutletArray = dlmread(fullfile(filepath, benchSuperName, supercatchmentPHBFileName),'\t',2);
+    benchSuperFolderName = ['Supercatchment', num2str(superNum),'PHBs']
+    benchSuperListName = ['Supercatchment', num2str(superNum),'_allOutletModePairs.txt'];
+    benchSuperOutName = ['Supercatchment', num2str(superNum)];
+    phbOutletArray = dlmread(fullfile(filepath,benchSuperFolderName, benchSuperListName),'\t',2);
 
 %%
 
@@ -80,7 +79,7 @@ for i = 1:length(targetList)
 
 %% Make PHB plot
 
-    figure(supercatchmentNum)
+    figure(superNum)
     hold on;
     grid on
     set(gca,'xtick',[0:1000:peakElevation], 'Linewidth', 1.5)
@@ -100,13 +99,13 @@ for i = 1:length(targetList)
 
 %% Save figure
 
-figName = [benchSuperName,'_hBench_vs_hChange.png']
+figName = [benchSuperOutName,'_hBench_vs_hChange.png']
 figFilePath = fullfile(supercatchmentFigureOutputFilePath, figName);
 fig1 = gcf;
 saveas(fig1,figFilePath,outputFigType)
-    end
 end
-end
+
+
 
 
 %% Plot all PHBs for ROI
@@ -146,7 +145,7 @@ xlabel('Outlet elevation [m]', 'Fontsize', 25, 'Fontweight', 'bold', 'Interprete
 %%
 
 figName = [groupArea,'_hBench_vs_hChange_allSupercatchments.png']
-figFilePath = fullfile(supercatchmentFigureOutputFilePath, figName);
+figFilePath = fullfile(figureOutputFilePath, figName);
 fig1 = gcf;
 saveas(fig1,figFilePath,outputFigType)
 

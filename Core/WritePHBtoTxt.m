@@ -9,12 +9,6 @@
 % 
 %% Set variables
 
-
-
-
-
-
-
 minBenchLength = 3; % In catchments, consecutive number of catchments with shared PH mode 
 spillOverElevations = 25; % Elevation above and below PH modal elevation
 areaThreshPixelNum = 2777; % In pixels, must be same as in PH
