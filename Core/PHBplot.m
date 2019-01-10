@@ -6,8 +6,6 @@
 % 
 % 
 
-Defaults;
-addpath(topoToolboxFilePath); 
 figureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'Figures');
 supercatchmentFigureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'Figures','SupercatchmentPHBs');
 mkdir(figureOutputFilePath);
@@ -17,25 +15,26 @@ mkdir(supercatchmentFigureOutputFilePath);
 for count =supercatchmentNum
     clf;
     clear phbOutletArray
-    
+ 
+%% Plot options
 peakElevation = peakElevationForOutputFig;
 plotColor = 'b'
 markerSize = 25;
 supercatchmentNum =count;
 
 baseLevelOutlet =0;
-lowELA=3400
-highELA = 3800;
-
-nanFlag = -32768
 
 
-supercatchmentBenchFolderName = ['Supercatchment',num2str(supercatchmentNum)]
-supercatchmentFileName = [groupArea,'Supercatchment', num2str(supercatchmentNum),'.tif']
-supercatchmentFolderName = [groupArea,'Supercatchment', num2str(supercatchmentNum)]
-benchSuperName = ['Supercatchment', num2str(supercatchmentNum)]
+%% Input and output files
 
-filepath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchments')
+nanFlag = -32768;
+supercatchmentBenchFolderName = ['Supercatchment',num2str(count)]
+supercatchmentFileName = [groupArea,'Supercatchment', num2str(count),'.tif']
+supercatchmentFolderName = [groupArea,'Supercatchment', num2str(count)]
+benchSuperName = ['Supercatchment', num2str(count),'PHBs']
+
+filepath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt')
+roiFileName = [groupArea, '_allPHBs.txt']
 
 
 allPHBs = dir(filepath);
@@ -45,37 +44,18 @@ targetList = 1:length(allPHBs)
 for i = 1:length(targetList) 
     
     
-    targetPHB = targetList(i);
-    fileName = allPHBs(targetPHB).name;
+    targetFolder = targetList(i);
+    fileName = allPHBs(targetFolder).name;
     
     superWordLocation1 = strfind(fileName, 'Supercatchment');
-    superWordLocation2 = strfind(fileName, 'Stream');
+    superWordLocation2 = strfind(fileName, 'PHBs');
     inBetweenTextSuper = fileName(superWordLocation1+14:superWordLocation2-1);
     supercatchmentNum = str2double(inBetweenTextSuper); 
-   
-    if(supercatchmentNum == count)
-   
     
+    supercatchmentPHBFileName = ['Supercatchment',num2str(supercatchmentNum),'_allOutletModePairs.txt'];
+    phbOutletArray = dlmread(fullfile(filepath, benchSuperName, supercatchmentPHBFileName),'\t',2);
+      
     
-   
-    word1Location = strfind(fileName, 'HypsoPeak');
-    word2Location = strfind(fileName, 'Pour');
-    inBetweenText = fileName(word1Location+9:word2Location-1);
-    hypsoPeak = str2double(inBetweenText);
-    
-    word3Location = strfind(fileName, 'Elevation');
-    word4Location = strfind(fileName, 'Super');
-    inBetweenText = fileName(word3Location+9:word4Location-1);
-    outlet = str2double(inBetweenText);
-    
-    deltaH = hypsoPeak-outlet;
-   
- 
-    phbOutletArray(i,1) = outlet;
-    phbOutletArray(i,2)=hypsoPeak;   
-
-   
-    end
 end
 
 
@@ -125,31 +105,8 @@ end
 
 %% Plot all PHBs for ROI
 
- 
- 
- allPHBs = dir(filepath);
-
- for i = 1:length(targetList) 
-
-     targetPHB = targetList(i);
-    fileName = allPHBs(targetPHB).name;
-    
-    word1Location = strfind(fileName, 'HypsoPeak');
-    word2Location = strfind(fileName, 'Pour');
-    inBetweenText = fileName(word1Location+9:word2Location-1);
-    hypsoPeak = str2double(inBetweenText);
-    
-    word3Location = strfind(fileName, 'Elevation');
-    word4Location = strfind(fileName, 'Super');
-    inBetweenText = fileName(word3Location+9:word4Location-1);
-    outlet = str2double(inBetweenText);
-   
- 
-    phbOutletArray(i,1) = outlet;
-    phbOutletArray(i,2)=hypsoPeak;   
- end
- 
- modeOutletArray = phbOutletArray(:,[1,2]);
+phbOutletArray = dlmread(fullfile(filepath, roiFileName),'\t',2);
+modeOutletArray = phbOutletArray(:,[1,2]);
 modeOutletArray(any(isnan(modeOutletArray), 2), :) = [];
 zeroIndices = find(modeOutletArray(:,2)==0);
 modeOutletArray(zeroIndices,:)=[];

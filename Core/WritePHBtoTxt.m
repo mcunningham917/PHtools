@@ -41,7 +41,7 @@ for count = supercatchmentNum
     allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt');
     outputFileNameROI = [groupArea,'_allPHBs.txt'];
     
-    SupercatchmentBenchFiles = fullfile(phAnalysisFilePath, groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt',supercatchmentFileName);
+    SupercatchmentBenchFiles = fullfile(phAnalysisFilePath, groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt',supercatchmentFileName,'PHBs');
     
     outputFileName = [supercatchmentFileName,'_allOutletModePairs.txt'];
 
