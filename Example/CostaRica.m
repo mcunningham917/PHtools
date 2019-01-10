@@ -7,7 +7,7 @@ addpath(topoToolboxFilePath)
 %% Define job parameters, include Region, supercatchment
 
 groupArea = 'CostaRica';
-supercatchmentNum = [1:36];
+supercatchmentNum = [9];
 outputFigType = 'png';
 peakElevationForOutputFig = 4000;
 %%

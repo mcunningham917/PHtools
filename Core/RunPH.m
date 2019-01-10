@@ -6,7 +6,7 @@
 
 %% Identify and record PHBs
 
-WritePHBtoTiff;
+WritePHBtoTxt;
 
 %% Plot results
 
