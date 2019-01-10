@@ -3,8 +3,8 @@
 import os
 
 # Set to just 'gdal_merge' if it works for you
-gdal_merge = '/opt/local/bin/gdal_merge.py-3.7'
-# gdal_merge = 'gdal_merge.py'
+gdal_merge = 'gdal_merge.py'
+# gdal_merge = '/opt/local/bin/gdal_merge.py-3.7'
 
 # Options to be passed to gdal_merge
 args = '-o MergedHypsoPeaks.tif'
