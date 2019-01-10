@@ -22,12 +22,13 @@ cuSumThresh = .02; % For PH bench separation
 pixelLength = 30;
 nanFlag = -32768;
 
-
+allROIPHBcount=1;
 %% 
 for count = supercatchmentNum
 
     PHBCount=1;
     streamSupercatchment = count;
+
 
     supercatchmentFilePath = fullfile(phDataFilePath,groupArea,'Supercatchments');
     supercatchmentFileName = ['Supercatchment', num2str(streamSupercatchment)];
@@ -38,6 +39,7 @@ for count = supercatchmentNum
     
     %Output file path for PHB layer
     allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt');
+    outputFileNameROI = [groupArea,'_allPHBs.txt'];
     
     SupercatchmentBenchFiles = fullfile(phAnalysisFilePath, groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt',supercatchmentFileName);
     
@@ -131,9 +133,9 @@ realFirstOrderStreamList=realFirstOrderStreamList(realFirstOrderStreamList>0);
                     
                     fullOutputFileForSuper = fullfile(SupercatchmentBenchFiles, outputFileName);
 
-                    columnNames = {'Modes','Outlets','Supercatchment', 'StreamID'};
-                    sTable = array2table(supercatchmentPHBArray,'VariableNames',columnNames)
-                    writetable(sTable, fullOutputFileForSuper, 'Delimiter','\t');
+                    columnNames = {'Outlets','Modes','Supercatchment', 'StreamID'};
+                    supercatchmentOutTable = array2table(supercatchmentPHBArray,'VariableNames',columnNames)
+                    writetable(supercatchmentOutTable, fullOutputFileForSuper, 'Delimiter','\t');
                
                    
                
@@ -142,6 +144,19 @@ realFirstOrderStreamList=realFirstOrderStreamList(realFirstOrderStreamList>0);
         end
         end
         end
+        
+        
+        superPHBListLength = length(supercatchmentPHBArray);
+        allROIPHBcountNew = (allROIPHBcount+ superPHBListLength)-1;
+        allROIArray(allROIPHBcount:allROIPHBcountNew,:) = supercatchmentPHBArray;
+        
+        fullOutputFileForSuper = fullfile(allSupercatchmentPHBfilePath, outputFileNameROI);
+
+                    columnNames = {'Modes','Outlets','Supercatchment', 'StreamID'};
+                    roiOutTable = array2table(allROIArray,'VariableNames',columnNames)
+                    writetable(roiOutTable, fullOutputFileForSuper, 'Delimiter','\t');
+        allROIPHBcount = allROIPHBcount+superPHBListLength;
+               
 end
 
  

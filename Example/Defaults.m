@@ -1,7 +1,7 @@
 %% Define root paths
 
 phRootFilePath      = fullfile('~','Science');
-phDataFilePath      = fullfile(phRootFilePath, 'PHtools/Data');
+phDataFilePath      = fullfile(phRootFilePath, 'PHdata');
 phAnalysisFilePath  = fullfile(phRootFilePath, 'PHanalysis');
 phToolsPath         = fullfile(phRootFilePath, 'PHtools','Core')
 
