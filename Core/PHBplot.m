@@ -15,6 +15,7 @@ mkdir(supercatchmentFigureOutputFilePath);
 for count =supercatchmentNum
     clf;
     clear phbOutletArray
+   
  
 %% Plot options
 peakElevation = peakElevationForOutputFig;
@@ -27,10 +28,10 @@ baseLevelOutlet =0;
 %% Input and output files
 
 nanFlag = -32768;
-supercatchmentBenchFolderName = ['Supercatchment',num2str(supercatchmentNum)]
-supercatchmentFileName = [groupArea,'Supercatchment', num2str(supercatchmentNum),'.tif']
-supercatchmentFolderName = [groupArea,'Supercatchment', num2str(supercatchmentNum)]
-benchSuperName = ['Supercatchment', num2str(supercatchmentNum),'PHBs']
+supercatchmentBenchFolderName = ['Supercatchment',num2str(count)]
+supercatchmentFileName = [groupArea,'Supercatchment', num2str(count),'.tif']
+supercatchmentFolderName = [groupArea,'Supercatchment', num2str(count)]
+
 
 filepath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt')
 roiFileName = [groupArea, '_allPHBs.txt']
@@ -51,9 +52,10 @@ for i = 1:length(targetList)
     superWordLocation1 = strfind(fileName, 'Supercatchment');
     superWordLocation2 = strfind(fileName, 'PHBs');
     inBetweenTextSuper = fileName(superWordLocation1+14:superWordLocation2-1);
-    supercatchmentNum = str2double(inBetweenTextSuper); 
+    superNum = str2double(inBetweenTextSuper); 
     
-    supercatchmentPHBFileName = ['Supercatchment',num2str(supercatchmentNum),'_allOutletModePairs.txt'];
+    benchSuperName = ['Supercatchment', num2str(superNum),'PHBs']
+    supercatchmentPHBFileName = ['Supercatchment',num2str(superNum),'_allOutletModePairs.txt'];
     phbOutletArray = dlmread(fullfile(filepath, benchSuperName, supercatchmentPHBFileName),'\t',2);
     
     else 
