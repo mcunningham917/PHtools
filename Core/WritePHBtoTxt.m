@@ -2,10 +2,10 @@
 % 
 % Description
 % 
-% Find steps in PH output, and writes a geotiff of elevation band around
-% the PH mode. Also writes out a geotiff of entire catchment above h_change
-% for the purpose of generating polygon layer.
-% 
+% Find steps in PH output, and writes a .txt containing (outlet, mode)
+% pairs for each PHB in supercatchment. For a list of supercatchments, two 
+% .txt's are written: one master file that contains all PHBs for all
+% supercatchments passed, and one for each supercatchment.
 % 
 %% Set variables
 

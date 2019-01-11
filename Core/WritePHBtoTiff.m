@@ -2,10 +2,9 @@
 % 
 % Description
 % 
-% Find steps in PH output, and writes a geotiff of elevation band around
-% the PH mode. Also writes out a geotiff of entire catchment above h_change
-% for the purpose of generating polygon layer.
-% 
+% Find steps in PH output, and writes a geotiff of elevation bands around
+% each PH mode. Each band interatively "fills in" a blank copy of the supercatment.
+% Final output is a geotiff with each PHB band.
 % 
 %% Set variables
 
