@@ -10,7 +10,7 @@ PHtools is implemented in Matlab (R2017b) and requires Topotoolbox (v. 2.1).
 
 ## Structure
 
-Code is separated into two folders: `Core/`, which contains the scripts need to run PH, and `Example/`, which contains a demo, `CostaRica.m`, and a `Defaults.m` script that be shared by multiple driver scripts.
+Code is separated into two folders: [`Core/`](https://github.com/mcunningham917/PHtools/tree/master/Core), which contains the scripts need to run PH, and [`Example/`](https://github.com/mcunningham917/PHtools/tree/master/Example), which contains a demo, [`CostaRica.m`](https://github.com/mcunningham917/PHtools/blob/master/Example/CostaRica.m), and a [`Defaults.m`](https://github.com/mcunningham917/PHtools/blob/master/Example/Defaults.m) script that be shared by multiple driver scripts.
 
 ## Basic Operation
 
@@ -22,19 +22,21 @@ Traverse upstream from base level to main drainage divide along chains (flowpath
 
 Record the modal elevation of the catchment draining to the (progressively higher) position on each chain
 
-### Step 2: Progressive Hypomsetric Bench (PHB) Identification
+### Step 2: Progressive Hypsometric Bench (PHB) Identification
 
 Identify nested subcatchments with similar modal elevation, i.e., PHBs.
 
 ## Output
 
-PHtools generates and writes to a data repository, PHanalysis. 
+PHtools generates and writes to a data repository, [`PHanalysis`](https://github.com/mcunningham917/PHanalysis). 
 
-**Step 1:** Folder containing a txt file for each flow path: [`PHanalysis/ROI/Subcatchments/25mStep`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/Subcatchments/25mStep)
+**Step 1:** Folder containing a txt file for each flow path: [`PHanalysis/CostaRica/Subcatchments/25mStep`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/Subcatchments/25mStep)
 
-**Step 2:** Two folders, one containing a .txt file for both each supercatchment and the ROI: [`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt) 
+**Step 2:** Two folders:
 
-and one contain geotiffs of a map of PHBs  in each supercatchment:[`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentTiffs]`(https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt).
+One contains a .txt file for each supercatchment and one .txt for the entire ROI: [`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt) 
+
+The second contains maps of PHBs (geotiffs) for each supercatchment:[`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentTiffs`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt).
 
 ## Documentation
 
