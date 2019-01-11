@@ -30,11 +30,13 @@ Identify nested subcatchments with similar modal elevation, i.e., PHBs.
 
 PHtools generates and writes to a data repository, [`PHanalysis`](https://github.com/mcunningham917/PHanalysis). 
 
-**Step 1:** Folder containing a txt file for each flow path: [`PHanalysis/ROI/Subcatchments/25mStep`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/Subcatchments/25mStep)
+**Step 1:** Folder containing a txt file for each flow path: [`PHanalysis/CostaRica/Subcatchments/25mStep`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/Subcatchments/25mStep)
 
-**Step 2:** Two folders, one containing a .txt file for both each supercatchment and the ROI: [`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt) 
+**Step 2:** Two folders:
 
-and one contain geotiffs of a map of PHBs  in each supercatchment:[`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentTiffs]`(https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt).
+One contains a .txt file for each supercatchment and one .txt for the entire ROI: [`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt) 
+
+The second contains maps of PHBs (geotiffs) for each supercatchment:[`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentTiffs`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt).
 
 ## Documentation
 
