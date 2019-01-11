@@ -34,9 +34,9 @@ for count =supercatchmentNum
     
     clear streamProfileStruct
     
-    supercatchmentNum = count; 
-    supercatchmentFileName = [groupArea,'Supercatchment',num2str(supercatchmentNum),'.tif'];
-    supercatchmentFolderName = ['Supercatchment', num2str(supercatchmentNum)];
+    
+    supercatchmentFileName = [groupArea,'Supercatchment',num2str(count),'.tif'];
+    supercatchmentFolderName = ['Supercatchment', num2str(count)];
     outputFilePath=fullfile(phAnalysisFilePath,groupArea,'Subcatchments','25mStep', supercatchmentFolderName);
     mkdir(outputFilePath);
  
@@ -160,7 +160,7 @@ end
                         
                         if(stepNum == length(targetPourPointElevationList))
           
-                        highDumpName = ['Supercatchment',num2str(supercatchmentNum),'StreamNum',num2str(streamNum),...
+                        highDumpName = ['Supercatchment',num2str(count),'StreamNum',num2str(streamNum),...
                             'PourPointElevation',num2str(finalOutletElevation),'.tif'];
                         highDumpFilePath=fullfile(highSubcatchmentDumpFile, highDumpName);
                         SubcatchmentWrite(finalDrainageBasinArray, geospatialReferenceArray,demInfo,nanFlag,highDumpFilePath ) 
@@ -266,7 +266,7 @@ end
     
                 % Name output .txt file by Supercatchment number and chain number
     
-                outputFileName = ['Supercatchment',num2str(supercatchmentNum),'StreamNum',num2str(streamNum), '_ModeOutletArray.txt'];
+                outputFileName = ['Supercatchment',num2str(count),'StreamNum',num2str(streamNum), '_ModeOutletArray.txt'];
                 fullOutputFile = fullfile(outputFilePath, outputFileName);
                 dlmwrite(fullOutputFile,modeOutletArray)
 
