@@ -203,7 +203,7 @@ for count = supercatchmentNum
                     end
                     
                     %supercatchmentDEMArrayForPHB(supercatchmentDEMArrayForPHB==1) = NaN;  
-                    supercatchmentDEMArrayForPHB = isfloat(supercatchmentDEMArrayForPHB);
+                    %supercatchmentDEMArrayForPHB = isfloat(supercatchmentDEMArrayForPHB);
                     
                     fullOutputFileForMaster = fullfile(allSupercatchmentPHBfilePath, PHBOutputFileName);
                     
