@@ -10,7 +10,7 @@ if not os.path.isfile(gdal_merge):
 # Options to be passed to gdal_merge
 merged_filename = 'MergedHypsoPeaks'
 # Choose -v for very verbose output
-args = ' -ot Float32 -n -32768 '
+args = ' -ot Float32 -n 32768 '
 # args = ' -ot Float32 -v -n -32768 '
 
 # Get a list of all the files in the current directory
@@ -23,7 +23,8 @@ print('Number of GeoTIFFs to merge: {}'.format(n_tiffs))
     
 # Call gdal_merge on this giant list
 if n_tiffs<1000:
-    os.system(gdal_merge+' -o '+merged_filename+'.tif'+' '+' '.join(tiffs))
+#     os.system(gdal_merge+' -o '+merged_filename+'.tif'+' '+' '.join(tiffs))
+    os.system('gdalwarp '+merged_filename+'.tif'+' '+' '.join(tiffs))
 else:
     n_batches = n_tiffs//1000
     tmp_filename_list = []
