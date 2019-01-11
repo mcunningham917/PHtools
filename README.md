@@ -30,9 +30,11 @@ Identify nested subcatchments with similar modal elevation, i.e., PHBs.
 
 PHtools generates and writes to a data repository, PHanalysis. 
 
-**Step 1:** Folder containing a txt file for each flow path: `PHanalysis/ROI/Subcatchments/25mStep`
+**Step 1:** Folder containing a txt file for each flow path: [`PHanalysis/ROI/Subcatchments/25mStep`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/Subcatchments/25mStep)
 
-**Step 2:** Folder containing a txt file for each PHB: `PHanalysis/ROI/PHBs/AllSupercatchments`
+**Step 2:** Two folders, one containing a .txt file for both each supercatchment and the ROI: [`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt) 
+
+and one contain geotiffs of a map of PHBs  in each supercatchment:[`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentTiffs]`(https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt).
 
 ## Documentation
 
