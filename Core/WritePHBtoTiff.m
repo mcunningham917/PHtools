@@ -34,7 +34,7 @@ for count = supercatchmentNum
     progressivePourPointSubcatchmentFilePath = fullfile(phAnalysisFilePath,groupArea,'Subcatchments','25mStep', num2str(supercatchmentFileName));
     
     %Output file path for PHB layer
-    allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,'PHBs', 'Cusum02_BenchLength3Steps','AllSupercatchmentTiffs');
+    allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,'PHBs', 'Cusum02_BenchLength3Steps','AllSupercatchmentsTiffs');
     
    %Ouput file path for polygon layer
     %allSupercatchmentPHBforPolygons = fullfile(phAnalysisFilePath,'Cusum02_BenchLength3Steps', 'AllSupercatchments_ForPolygons');
