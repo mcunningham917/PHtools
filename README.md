@@ -22,7 +22,7 @@ Traverse upstream from base level to main drainage divide along chains (flowpath
 
 Record the modal elevation of the catchment draining to the (progressively higher) position on each chain
 
-### Step 2: Progressive Hypomsetric Bench (PHB) Identification
+### Step 2: Progressive Hypsometry Bench (PHB) Identification
 
 Identify nested subcatchments with similar modal elevation, i.e., PHBs.
 
