@@ -194,13 +194,16 @@ for count = supercatchmentNum
  
                         
                     supercatchmentDEMArrayForPHB(hypsoPeakElevationIndices)=hypsoPeakElevation;
+                    
+                    
                    
 
                         
                         
                     end
                     
-                    supercatchmentDEMArrayForPHB(supercatchmentDEMArrayForPHB==1) = NaN;   
+                    %supercatchmentDEMArrayForPHB(supercatchmentDEMArrayForPHB==1) = NaN;  
+                    supercatchmentDEMArrayForPHB = isfloat(supercatchmentDEMArrayForPHB);
                     
                     fullOutputFileForMaster = fullfile(allSupercatchmentPHBfilePath, PHBOutputFileName);
                     
