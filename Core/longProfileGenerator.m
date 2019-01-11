@@ -37,7 +37,7 @@ targetTrib = streamNetworkStruct(streamNum);
 
 % Find each downstream link for specified channel link
 for tribCount = 1:10
-    if(~isnan(targetTrib.tribtoIX))
+    if(~isnan(targetTrib.tribtoIX) && targetTrib.tribtoIX>0)
         targetStreamTribs(tribCount,1) = targetTrib.tribtoIX;
         targetTribNum = targetTrib.tribtoIX;
         targetTrib = streamNetworkStruct(targetTribNum);
