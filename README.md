@@ -1,6 +1,6 @@
 # PHtools
 
-PHtools provides a set of Matlab functions for analyzing the hypsometry of drainage 
+`PHtools` provides a set of Matlab functions for analyzing the hypsometry of drainage 
 basins in a provided set of digital elevation models. 
 It performs the 
 [Progressive Hypsometry algorithm (PH)](https://mcunningham917.github.io/PHdoc/Method) 
@@ -12,9 +12,9 @@ hypsometric maxima are distributed in the landscape.
 
 ## Requirements
 
-PHtools is implemented in [`Matlab`](https://www.mathworks.com/products/matlab.html)
+`PHtools` is implemented in [`Matlab`](https://www.mathworks.com/products/matlab.html)
  (R2017b) and requires 
-[`TopoToolbox`](https://topotoolbox.wordpress.com/) (v. 2.1).
+[`TopoToolbox`](https://topotoolbox.wordpress.com/) (v.2.1).
 
 ## Structure
 
@@ -30,8 +30,7 @@ Code is separated into two folders:
 
 ## Basic Operation
 
-The PH algorithm involves two routines: 
-
+The `PHtools` algorithm involves two routines: 
  <dl>
   <dt>Step 1: Hypsometry of progressive (nested) subcatchments </dt>
   <dd> 
@@ -48,21 +47,24 @@ The PH algorithm involves two routines:
 </dl> 
 
 
+## Input
+
+`PHtools` processes digital elevation model data files 
+in GeoTIFF format (archived examples at 
+[`PHdata`](https://github.com/mcunningham917/PHdata)).
+
 ## Output
 
-PHtools generates and writes to a results folder (archived example at 
+`PHtools` creates and writes to a results folder (archived example at 
 [`PHanalysis`](https://github.com/mcunningham917/PHanalysis)) with two subfolders:
-
  <dl>
   <dt><em>Subcatchments</em> subfolder:</dt>
   <dd> 
-	 which contains a text file for each flow path
+	 which contains a text file for each flow path.
   </dd>
   <dt><em>PHBs</em> subfolder:</dt>
   <dd> 
-  
   which contains two subfolders:
-  
   <ul>
 	<li>
 		contains a .txt file for each supercatchment and one .txt for the entire ROI: 
@@ -81,8 +83,7 @@ PHtools generates and writes to a results folder (archived example at
 
 ## Documentation
 
-[PHdoc](https://mcunningham917.github.io/PHdoc/) provides summary documentation, 
-and includes:
-
-   - core description of PH method and standard output
-   - links to all code and data repositories
+Refer to [PHdoc](https://mcunningham917.github.io/PHdoc/) for summary documentation, 
+including:
+   - a core description of the `PHtools` method and its output
+   - links to all related `GitHub` repositories
