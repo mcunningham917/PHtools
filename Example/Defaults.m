@@ -1,5 +1,7 @@
 %% Define root paths
 
+% Set path for PHtools and ouput file, PHanalysis
+
 phRootFilePath      = fullfile('~','Science');
 phDataFilePath      = fullfile(phRootFilePath, 'PHtools/Data');
 phAnalysisFilePath  = fullfile(phRootFilePath, 'PHanalysis');
