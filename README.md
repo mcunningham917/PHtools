@@ -3,8 +3,10 @@
 PHtools provides a set of Matlab functions for analyzing the hypsometry of drainage 
 basins in a provided set of digital elevation models. 
 It performs the 
-[Progressive Hypsometry algorithm (PH)](https://mcunningham917.github.io/PHdoc/Method/) 
-described in [Cunningham et al. (2019)](https://mcunningham917.github.io/PHdoc/). The aim is specifically to demonstrate how 
+[Progressive Hypsometry algorithm (PH)](https://mcunningham917.github.io/PHdoc/Method) 
+described in 
+[Cunningham et al. (2019)](https://mcunningham917.github.io/PHdoc/Publications). 
+The aim is specifically to demonstrate how 
 hypsometric maxima are distributed in the landscape. 
 
 Example output is available at [PHdoc](https://mcunningham917.github.io/PHdoc/). 
