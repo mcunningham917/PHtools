@@ -82,8 +82,7 @@ The `PHtools` algorithm involves two routines:
 
 ## Documentation
 
-[PHdoc](https://mcunningham917.github.io/PHdoc/) provides summary documentation, 
-and includes:
-
-   - core description of `PHtools` method and standard output
-   - links to all code and data repositories
+Refer to [PHdoc](https://mcunningham917.github.io/PHdoc/) for summary documentation, 
+including:
+   - a core description of the `PHtools` method and its output
+   - links to all related `GitHub` repositories
