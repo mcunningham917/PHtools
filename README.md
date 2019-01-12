@@ -38,8 +38,7 @@ The PH algorithm involves two routines:
   <dd> 
 	Traverse upstream from base level to main drainage divide along chains (flowpaths) in 
 	supplied DEM.
-  </dd> 
-  <dd> 
+  <br> 
 	Record the modal elevation of the catchment draining to the (progressively higher) 
 	position on each chain.
   </dd>
