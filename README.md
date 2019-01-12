@@ -50,7 +50,7 @@ The PH algorithm involves two routines:
 
 ## Output
 
-PHtools generates and writes to a data folder (archived example at 
+PHtools generates and writes to a results folder (archived example at 
 [`PHanalysis`](https://github.com/mcunningham917/PHanalysis)) with two subfolders:
 
  <dl>
