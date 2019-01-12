@@ -61,21 +61,10 @@ PHtools generates and writes to a data folder (archived example at
   <dt><em>PHBs</em> subfolder:</dt>
   <dd> 
 	 which contains two subfolders
-
-	 <dl>
-	  <dt><em>xx</em> subfolder:</dt>
-	  <dd> 
-		 contains a .txt file for each supercatchment and one .txt for the entire ROI: 
+	 - contains a .txt file for each supercatchment and one .txt for the entire ROI: 
 [`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt). 
-	  </dd>
-	  <dt><em>xx</em> subfolder:</dt>
-	  <dd> 
-		 contains maps of PHBs (geotiffs) for each supercatchment:
+     -  contains maps of PHBs (geotiffs) for each supercatchment:
 [`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentTiffs`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt).
-	  </dd>
-	</dl> 
-
-
   </dd>
 </dl> 
 
