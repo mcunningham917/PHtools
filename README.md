@@ -1,6 +1,6 @@
 # PHtools
 
-PHtools provides a set of Matlab functions for analyzing the hypsometry of drainage 
+`PHtools` provides a set of Matlab functions for analyzing the hypsometry of drainage 
 basins in a provided set of digital elevation models. 
 It performs the 
 [Progressive Hypsometry algorithm (PH)](https://mcunningham917.github.io/PHdoc/Method) 
@@ -12,7 +12,7 @@ hypsometric maxima are distributed in the landscape.
 
 ## Requirements
 
-PHtools is implemented in [`Matlab`](https://www.mathworks.com/products/matlab.html)
+`PHtools` is implemented in [`Matlab`](https://www.mathworks.com/products/matlab.html)
  (R2017b) and requires 
 [`TopoToolbox`](https://topotoolbox.wordpress.com/) (v.2.1).
 
@@ -30,7 +30,7 @@ Code is separated into two folders:
 
 ## Basic Operation
 
-The PH algorithm involves two routines: 
+The `PHtools` algorithm involves two routines: 
  <dl>
   <dt>Step 1: Hypsometry of progressive (nested) subcatchments </dt>
   <dd> 
@@ -54,7 +54,7 @@ The PH algorithm involves two routines:
 
 ## Output
 
-PHtools creates and writes to a results folder (archived example at 
+`PHtools` creates and writes to a results folder (archived example at 
 [`PHanalysis`](https://github.com/mcunningham917/PHanalysis)) with two subfolders:
  <dl>
   <dt><em>Subcatchments</em> subfolder:</dt>
@@ -85,5 +85,5 @@ PHtools creates and writes to a results folder (archived example at
 [PHdoc](https://mcunningham917.github.io/PHdoc/) provides summary documentation, 
 and includes:
 
-   - core description of PH method and standard output
+   - core description of `PHtools` method and standard output
    - links to all code and data repositories
