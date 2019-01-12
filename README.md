@@ -50,26 +50,32 @@ The PH algorithm involves two routines:
 
 ## Output
 
- 
-
-**Step 1:** Folder containing a txt file for each flow path: 
-[`PHanalysis/CostaRica/Subcatchments/25mStep`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/Subcatchments/25mStep).
-
-**Step 2:** Two folders:
-
-One contains a .txt file for each supercatchment and one .txt for the entire ROI: 
-[`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt). 
-
-The second contains maps of PHBs (geotiffs) for each supercatchment:
-[`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentTiffs`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt).
-
 PHtools generates and writes to a data folder (archived example at 
 [`PHanalysis`](https://github.com/mcunningham917/PHanalysis)) with two subfolders:
 
  <dl>
-  <dt><em>Subcatchments</em> folder:</dt>
+  <dt><em>Subcatchments</em> subfolder:</dt>
   <dd> 
 	 which contains a text file for each flow path
+  </dd>
+  <dt><em>PHBs</em> subfolder:</dt>
+  <dd> 
+	 which contains two subfolders
+
+	 <dl>
+	  <dt><em>xx</em> subfolder:</dt>
+	  <dd> 
+		 contains a .txt file for each supercatchment and one .txt for the entire ROI: 
+[`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt). 
+	  </dd>
+	  <dt><em>xx</em> subfolder:</dt>
+	  <dd> 
+		 contains maps of PHBs (geotiffs) for each supercatchment:
+[`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentTiffs`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt).
+	  </dd>
+	</dl> 
+
+
   </dd>
 </dl> 
 
