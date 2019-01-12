@@ -32,7 +32,6 @@ Code is separated into two folders:
 
 The PH algorithm involves two routines: 
 
-
  <dl>
   <dt>Step 1: Hypsometry of progressive (nested) subcatchments </dt>
   <dd> 
@@ -51,8 +50,7 @@ The PH algorithm involves two routines:
 
 ## Output
 
-PHtools generates and writes to a data repository, 
-[`PHanalysis`](https://github.com/mcunningham917/PHanalysis). 
+ 
 
 **Step 1:** Folder containing a txt file for each flow path: 
 [`PHanalysis/CostaRica/Subcatchments/25mStep`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/Subcatchments/25mStep).
@@ -64,6 +62,17 @@ One contains a .txt file for each supercatchment and one .txt for the entire ROI
 
 The second contains maps of PHBs (geotiffs) for each supercatchment:
 [`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentTiffs`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt).
+
+PHtools generates and writes to a data folder (archived example at 
+[`PHanalysis`](https://github.com/mcunningham917/PHanalysis)) with two subfolders:
+
+ <dl>
+  <dt><em>Subcatchments</em> folder:</dt>
+  <dd> 
+	 which contains a text file for each flow path
+  </dd>
+</dl> 
+
 
 ## Documentation
 
