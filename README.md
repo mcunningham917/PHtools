@@ -14,7 +14,7 @@ hypsometric maxima are distributed in the landscape.
 
 PHtools is implemented in [`Matlab`](https://www.mathworks.com/products/matlab.html)
  (R2017b) and requires 
-[`TopoToolbox`](https://topotoolbox.wordpress.com/) (v. 2.1).
+[`TopoToolbox`](https://topotoolbox.wordpress.com/) (v.2.1).
 
 ## Structure
 
@@ -31,7 +31,6 @@ Code is separated into two folders:
 ## Basic Operation
 
 The PH algorithm involves two routines: 
-
  <dl>
   <dt>Step 1: Hypsometry of progressive (nested) subcatchments </dt>
   <dd> 
@@ -48,21 +47,23 @@ The PH algorithm involves two routines:
 </dl> 
 
 
+## Input
+
+`PHtools` processes digital elevation model data in GeoTIFF format (archived examples at 
+[`PHdata`](https://github.com/mcunningham917/PHdata)).
+
 ## Output
 
-PHtools generates and writes to a results folder (archived example at 
+PHtools creates and writes to a results folder (archived example at 
 [`PHanalysis`](https://github.com/mcunningham917/PHanalysis)) with two subfolders:
-
  <dl>
   <dt><em>Subcatchments</em> subfolder:</dt>
   <dd> 
-	 which contains a text file for each flow path
+	 which contains a text file for each flow path.
   </dd>
   <dt><em>PHBs</em> subfolder:</dt>
   <dd> 
-  
   which contains two subfolders:
-  
   <ul>
 	<li>
 		contains a .txt file for each supercatchment and one .txt for the entire ROI: 
