@@ -69,10 +69,6 @@ PHtools generates and writes to a data folder (archived example at
 [`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt). 
 	</li>
 	<li>
-		<a href="Execution">Execution</a> 
-		describes how to implement a provided example of PH.
-	</li>
-	<li>
 		contains maps of PHBs (geotiffs) for each supercatchment:
 [`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentTiffs`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt).
 	</li>
