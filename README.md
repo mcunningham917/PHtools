@@ -9,8 +9,6 @@ described in
 The aim is specifically to demonstrate how 
 hypsometric maxima are distributed in the landscape. 
 
-Example output is available at [PHdoc](https://mcunningham917.github.io/PHdoc/). 
-Users can create PH plots by supplying catchment DEMs.
 
 ## Requirements
 
