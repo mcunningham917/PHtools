@@ -60,11 +60,23 @@ PHtools generates and writes to a data folder (archived example at
   </dd>
   <dt><em>PHBs</em> subfolder:</dt>
   <dd> 
-	 which contains two subfolders
-	 - contains a .txt file for each supercatchment and one .txt for the entire ROI: 
+  
+  which contains two subfolders:
+  
+  <ul>
+	<li>
+		contains a .txt file for each supercatchment and one .txt for the entire ROI: 
 [`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt). 
-     -  contains maps of PHBs (geotiffs) for each supercatchment:
+	</li>
+	<li>
+		<a href="Execution">Execution</a> 
+		describes how to implement a provided example of PH.
+	</li>
+	<li>
+		contains maps of PHBs (geotiffs) for each supercatchment:
 [`PHanalysis/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentTiffs`](https://github.com/mcunningham917/PHanalysis/tree/master/CostaRica/PHBs/Cusum02_BenchLength3Steps/AllSupercatchmentsTxt).
+	</li>
+</ul>
   </dd>
 </dl> 
 
