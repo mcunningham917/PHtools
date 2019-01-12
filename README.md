@@ -49,7 +49,8 @@ The `PHtools` algorithm involves two routines:
 
 ## Input
 
-`PHtools` processes digital elevation model data in GeoTIFF format (archived examples at 
+`PHtools` processes digital elevation model data files 
+in GeoTIFF format (archived examples at 
 [`PHdata`](https://github.com/mcunningham917/PHdata)).
 
 ## Output
