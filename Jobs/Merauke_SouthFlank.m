@@ -14,6 +14,6 @@ Ac=555;
 minBenchLength=3;
 supercatchmentNum = [26];
 outputFigType = 'png';
-peakElevationForOutputFig = 6000;
+peakElevationForOutputFig = 5000;
 %%
 RunPH

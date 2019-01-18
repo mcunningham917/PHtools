@@ -19,12 +19,13 @@ baseLevelOutlet =0;
 
 %% Input and output files
 
-filepath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt')
+allFilepath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt')
+supercatchmentFilepath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt','Supercatchments')
 supercatchmentFigureFilepath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt','')
 roiFileName = [groupArea, '_allPHBs.txt']
 
 
-allPHBs = dir(filepath);
+allPHBs = dir(supercatchmentFilepath);
     j=0;
 for i = 1:length(allPHBs)
     
@@ -42,7 +43,7 @@ end
 %%
 targetList = 1:length(allPHBList)
 
-for i = 1:length(targetList) 
+for i = 1:length(count) 
     
     clf;
     clear phbOutletArray
@@ -55,6 +56,8 @@ for i = 1:length(targetList)
     inBetweenTextSuper = fileName(superWordLocation1+14:superWordLocation2-1);
     superNum = str2double(inBetweenTextSuper); 
     
+    if(superNum == count)
+    
     
     supercatchmentFigureOutputFilePath = fullfile(phAnalysisFilePath,groupArea, 'Figures','SupercatchmentPHBs');
     mkdir(supercatchmentFigureOutputFilePath);
@@ -62,7 +65,7 @@ for i = 1:length(targetList)
     benchSuperFolderName = ['Supercatchment', num2str(superNum),'PHBs']
     benchSuperListName = ['Supercatchment', num2str(superNum),'_allOutletModePairs.txt'];
     benchSuperOutName = ['Supercatchment', num2str(superNum)];
-    phbOutletArray = dlmread(fullfile(filepath,benchSuperFolderName, benchSuperListName),'\t',2);
+    phbOutletArray = dlmread(fullfile(supercatchmentFilepath,benchSuperFolderName, benchSuperListName),'\t',2);
 
 %%
 
@@ -103,6 +106,7 @@ figName = [benchSuperOutName,'_hBench_vs_hChange.png']
 figFilePath = fullfile(supercatchmentFigureOutputFilePath, figName);
 fig1 = gcf;
 saveas(fig1,figFilePath,outputFigType)
+    end
 end
 
 
@@ -110,7 +114,7 @@ end
 
 %% Plot all PHBs for ROI
 
-phbOutletArray = dlmread(fullfile(filepath, roiFileName),'\t',2);
+phbOutletArray = dlmread(fullfile(allFilepath, roiFileName),'\t',2);
 modeOutletArray = phbOutletArray(:,[1,2]);
 modeOutletArray(any(isnan(modeOutletArray), 2), :) = [];
 zeroIndices = find(modeOutletArray(:,2)==0);
