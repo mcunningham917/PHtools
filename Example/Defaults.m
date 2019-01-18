@@ -2,8 +2,8 @@
 
 % Set path for PHtools and ouput file, PHanalysis
 
-phRootFilePath      = fullfile('~','Science');
-phDataFilePath      = fullfile(phRootFilePath, 'PHtools/Data');
+phRootFilePath      = fullfile('~','Dropbox/GlobalTargetedHypsometry', groupArea);
+phDataFilePath      = fullfile(phRootFilePath, 'PHdata');
 phAnalysisFilePath  = fullfile(phRootFilePath, 'PHanalysis');
 phToolsPath         = fullfile(phRootFilePath, 'PHtools','Core')
 

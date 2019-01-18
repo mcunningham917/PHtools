@@ -9,9 +9,9 @@
 % 
 %% Set variables
 
-minBenchLength = 3; % In catchments, consecutive number of catchments with shared PH mode 
+minBenchLength; % In catchments, consecutive number of catchments with shared PH mode 
 spillOverElevations = 25; % Elevation above and below PH modal elevation
-areaThreshPixelNum = 2777; % In pixels, must be same as in PH
+areaThreshPixelNum = Ac; % In pixels, must be same as in PH
 cuSumThresh = .02; % For PH bench separation
 pixelLength = 30;
 nanFlag = -32768;
@@ -36,7 +36,7 @@ for count = supercatchmentNum
     allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt');
     outputFileNameROI = [groupArea,'_allPHBs.txt'];
     
-    SupercatchmentBenchFiles = fullfile(phAnalysisFilePath, groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentTxt',supercatchmentOutFileName);
+    SupercatchmentBenchFiles = fullfile(phAnalysisFilePath, groupArea,'PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt','Supercatchments',supercatchmentOutFileName);
     
     outputFileName = [supercatchmentFileName,'_allOutletModePairs.txt'];
 

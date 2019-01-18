@@ -1,6 +1,8 @@
 %% Define root paths
 
+groupArea = 'Merauke';
 Defaults;
+
 addpath(phToolsPath)
 addpath(topoToolboxFilePath)
 
@@ -8,10 +10,10 @@ addpath(topoToolboxFilePath)
 
 % SupercatchmentNum can be a single value or list, and contains the ID
 % numbers for all supercatchments to be passed to PHRun.
-
-groupArea = 'Merauke';
-supercatchmentNum = [9,16];
+Ac=555;
+minBenchLength=3;
+supercatchmentNum = [26];
 outputFigType = 'png';
-peakElevationForOutputFig = 4000;
+peakElevationForOutputFig = 6000;
 %%
 RunPH
