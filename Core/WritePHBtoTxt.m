@@ -30,7 +30,8 @@ for count = supercatchmentNum
     supercatchmentDemName = [groupArea, 'Supercatchment', num2str(streamSupercatchment),'.tif']
 
     %Input list of (outlet, mode) pairs
-    progressivePourPointSubcatchmentFilePath = fullfile(fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'Subcatchments','25mStep', num2str(supercatchmentFileName)));
+    subcatchmentFolderName = [num2str(phStepLength),'mStep'];
+    progressivePourPointSubcatchmentFilePath = fullfile(fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'Subcatchments',subcatchmentFolderName, num2str(supercatchmentFileName)));
     
     %Output file path for PHB layer
     %allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'PHBs','Cusum02_BenchLength3Steps','Tables');

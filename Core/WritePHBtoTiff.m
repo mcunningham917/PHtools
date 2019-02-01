@@ -13,7 +13,7 @@ Defaults;
 addpath(topoToolboxFilePath); 
 
 minBenchLength; % In catchments, consecutive number of catchments with shared PH mode 
-spillOverElevations = 25; % Elevation above and below PH modal elevation
+spillOverElevations = phbBandThickness; % Elevation above and below PH modal elevation
 areaThreshPixelNum = Ac; % In pixels, must be same as in PH
 cuSumThresh = .02; % For PH bench separation
 pixelLength = 30;
@@ -32,7 +32,8 @@ for count = supercatchmentNum
     hBenchOutputFileName = [groupArea, 'Supercatchment', num2str(count), '_allPHBs_hBench.tif'];
 
     %Input list of (outlet, mode) pairs
-    progressivePourPointSubcatchmentFilePath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'Subcatchments','25mStep', num2str(supercatchmentFileName));
+    subcatchmentFolderName = [num2str(phStepLength),'mStep'];
+    progressivePourPointSubcatchmentFilePath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'Subcatchments', subcatchmentFolderName, num2str(supercatchmentFileName));
     
     %Output file path for PHB layer
     allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'PHBs', 'Cusum02_BenchLength3Steps','Maps');

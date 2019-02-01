@@ -12,8 +12,8 @@
 
 %% Set variables
 
-pourPointElevationStep = 25; % Step elevation height--vertical spacing of catchment elevations
-pourPointElevationSensitivity = 10; % Variability around each step height
+pourPointElevationStep = phStepLength; % Step elevation height--vertical spacing of catchment elevations
+pourPointElevationSensitivity = 5; % Variability around each step height
 streamNodeThreshNum=Ac; %In pixels, area threshold required to define channel head (at 30 m pixel size, 2777 is 2.5 sq. km)
 nanFlag = -32768;
    
@@ -37,7 +37,8 @@ for count =supercatchmentNum
     
     supercatchmentFileName = [groupArea,'Supercatchment',num2str(count),'.tif'];
     supercatchmentFolderName = ['Supercatchment', num2str(count)];
-    outputFilePath=fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'Subcatchments','25mStep', supercatchmentFolderName);
+    subcatchmentFolderName = [num2str(pourPointElevationStep),'mStep'];
+    outputFilePath=fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'Subcatchments',subcatchmentFolderName, supercatchmentFolderName);
     mkdir(outputFilePath);
  
 %% Bring in supercatchment DEM, write to GridObj, and delineate channel network

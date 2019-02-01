@@ -94,7 +94,8 @@ for j = 1:length(targetSupersList)
     modes = modeOutletArray(:,2)
     outlets = modeOutletArray(:,1)
     deltaH = modes-outlets;
-    [deltaHProb, deltaHBinCenters] = ksdensity(deltaH,'Support','positive','BoundaryCorrection','reflection');
+    [deltaHProb, deltaHBinCenters,bw] = ksdensity(deltaH,'Support','positive','BoundaryCorrection','reflection');
+    [deltaHProb, deltaHBinCenters] = ksdensity(deltaH,'Support','positive','BoundaryCorrection','reflection','Bandwidth',bw*.5);
 
     %modes = modeOutletArrayUnique(:,2)
     %outlets = modeOutletArrayUnique(:,1)
@@ -108,8 +109,8 @@ for j = 1:length(targetSupersList)
     clf;
     hold on;
     grid on
-    set(gca,'xtick',[0:1000:peakElevation], 'Linewidth', 1.5)
-    set(gca,'ytick',[0:500:peakElevation], 'Linewidth', 1.5)
+    set(gca,'xtick',[0:peakElevation/4:peakElevation], 'Linewidth', 1.5)
+    set(gca,'ytick',[0:peakElevation/4:peakElevation], 'Linewidth', 1.5)
     set(gca,'fontname', 'Arial','FontSize',25, 'fontweight', 'bold')
     
     
