@@ -28,13 +28,14 @@ for count = supercatchmentNum
     supercatchmentFilePath = fullfile(phDataFilePath,groupArea,'Supercatchments');
     supercatchmentFileName = ['Supercatchment', num2str(streamSupercatchment)];
     supercatchmentDemName = [groupArea, 'Supercatchment', num2str(streamSupercatchment),'.tif']
-    PHBOutputFileName = [groupArea, 'Supercatchment', num2str(count), '_allPHBs.tif'];
+    deltaHOutputFileName = [groupArea, 'Supercatchment', num2str(count), '_allPHBs_deltaH.tif'];
+    hBenchOutputFileName = [groupArea, 'Supercatchment', num2str(count), '_allPHBs_hBench.tif'];
 
     %Input list of (outlet, mode) pairs
-    progressivePourPointSubcatchmentFilePath = fullfile(phAnalysisFilePath,groupArea,'Subcatchments','25mStep', num2str(supercatchmentFileName));
+    progressivePourPointSubcatchmentFilePath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'Subcatchments','25mStep', num2str(supercatchmentFileName));
     
     %Output file path for PHB layer
-    allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,'PHBs', 'Cusum02_BenchLength3Steps','AllSupercatchmentsTiffs');
+    allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'PHBs', 'Cusum02_BenchLength3Steps','Maps');
     
    %Ouput file path for polygon layer
     %allSupercatchmentPHBforPolygons = fullfile(phAnalysisFilePath,'Cusum02_BenchLength3Steps', 'AllSupercatchments_ForPolygons');
@@ -52,6 +53,7 @@ for count = supercatchmentNum
     supercatchmentDEMArrayForPHB = supercatchmentDemArray;
     supercatchmentDEMArrayForPHBIX = find(~isnan(supercatchmentDemArray));
     supercatchmentDEMArrayForPHB(supercatchmentDEMArrayForPHBIX)=NaN;
+    supercatchmentDEMArrayForDeltaH=supercatchmentDEMArrayForPHB;
     
 
     demSinksFilled = fillsinks(supercatchmentDemGrid);
@@ -123,6 +125,7 @@ for count = supercatchmentNum
                 hypsoPeakElevation = round(min(benchStruct(benchListNum).HypsoPeaks));
                 benchOutletElevation = round(min(benchStruct(benchListNum).BenchOutlets));
                 maxBenchOutlet = max(benchStruct(benchListNum).BenchOutlets);
+                deltaH = hypsoPeakElevation-benchOutletElevation;
        
                 benchOutletElevation = round(benchOutletElevation);
                 targetPourPointElevation = benchOutletElevation;
@@ -155,6 +158,7 @@ for count = supercatchmentNum
                             finalDrainageBasinArray<=(hypsoPeakElevation+spillOverElevations));
                         
                         supercatchmentDEMArrayForPHB(hypsoPeakElevationIndices)=hypsoPeakElevation;
+                        supercatchmentDEMArrayForDeltaH(hypsoPeakElevationIndices)=deltaH;
 
                     else
             
@@ -193,6 +197,7 @@ for count = supercatchmentNum
  
                         
                     supercatchmentDEMArrayForPHB(hypsoPeakElevationIndices)=hypsoPeakElevation;
+                    supercatchmentDEMArrayForDeltaH(hypsoPeakElevationIndices)=deltaH;
                     
                     
                    
@@ -204,10 +209,13 @@ for count = supercatchmentNum
                     %supercatchmentDEMArrayForPHB(supercatchmentDEMArrayForPHB==1) = NaN;  
                     %supercatchmentDEMArrayForPHB = isfloat(supercatchmentDEMArrayForPHB);
                     
-                    fullOutputFileForMaster = fullfile(allSupercatchmentPHBfilePath, PHBOutputFileName);
+                    hBenchfullOutputFileForMaster = fullfile(allSupercatchmentPHBfilePath, hBenchOutputFileName);
+                    deltaHfullOutputFileForMaster = fullfile(allSupercatchmentPHBfilePath, deltaHOutputFileName);
                     
                     SubcatchmentWrite(supercatchmentDEMArrayForPHB, supercatchmentGeospatialReferenceArray,supercatchmentDemInfo,...
-                                nanFlag, fullOutputFileForMaster); 
+                                nanFlag, hBenchfullOutputFileForMaster);
+                   SubcatchmentWrite(supercatchmentDEMArrayForDeltaH, supercatchmentGeospatialReferenceArray,supercatchmentDemInfo,...
+                                nanFlag, deltaHfullOutputFileForMaster); 
 
             end
         end

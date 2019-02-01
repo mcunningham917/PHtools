@@ -1,7 +1,7 @@
 %% Define root paths
 
-groupArea = 'CostaRica';
-groupName = 'CostaRica';
+groupArea = 'Aceh';
+groupName = 'Aceh';
 Defaults;
 
 addpath(phToolsPath)
@@ -13,8 +13,11 @@ addpath(topoToolboxFilePath)
 % numbers for all supercatchments to be passed to PHRun.
 Ac=555;
 minBenchLength=3;
-supercatchmentNum = [1];
+supercatchmentNum = [29];
+
+Colors;
+plotColor = blue;
 outputFigType = 'png';
-peakElevationForOutputFig = 4000;
+peakElevationForOutputFig = 2500;
 %%
 RunPH

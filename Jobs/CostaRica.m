@@ -13,8 +13,14 @@ addpath(topoToolboxFilePath)
 % numbers for all supercatchments to be passed to PHRun.
 Ac=555;
 minBenchLength=3;
-supercatchmentNum = [1];
+supercatchmentNum = [9];
+
+Colors;
+plotColor = blue;
 outputFigType = 'png';
-peakElevationForOutputFig = 4000;
+peakElevationForOutputFig = 1200;
+pdfHeight = 1000;
+
+
 %%
 RunPH

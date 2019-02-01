@@ -22,7 +22,7 @@ supercatchmentFilePath =...
 
 supercatchmentList = dir(supercatchmentFilePath)
     
-highSubcatchmentDumpFile = fullfile(phAnalysisFilePath,groupArea,'HighSubcatchmentDumpTemp');
+highSubcatchmentDumpFile = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'HighSubcatchmentDumpTemp');
 
 mkdir(highSubcatchmentDumpFile);
         
@@ -37,7 +37,7 @@ for count =supercatchmentNum
     
     supercatchmentFileName = [groupArea,'Supercatchment',num2str(count),'.tif'];
     supercatchmentFolderName = ['Supercatchment', num2str(count)];
-    outputFilePath=fullfile(phAnalysisFilePath,groupArea,'Subcatchments','25mStep', supercatchmentFolderName);
+    outputFilePath=fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'Subcatchments','25mStep', supercatchmentFolderName);
     mkdir(outputFilePath);
  
 %% Bring in supercatchment DEM, write to GridObj, and delineate channel network
@@ -180,6 +180,7 @@ end
                     loadDEM(highSubcatchmentDumpFile, highDumpName, nanFlag);
         
                 % Delineate drainage for this small catchment
+                
 
                 subcatchmentDemSinksFilled = fillsinks(subcatchmentDemGrid);
                 subcatchmentFlowDirectionObj = FLOWobj(subcatchmentDemSinksFilled);
