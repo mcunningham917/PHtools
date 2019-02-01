@@ -11,4 +11,4 @@ WritePHBtoTiff;
 
 %% Plot results
 
-%PHBplot;
+PHBplot;

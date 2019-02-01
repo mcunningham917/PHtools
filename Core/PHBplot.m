@@ -6,10 +6,10 @@
 % 
 %
 Colors;
-count = supercatchmentNum;
 numSupers = length(supercatchmentNum);
+supercatchmentNum = supercatchmentNum';
 
-figureOutputFilePath = fullfile(phAnalysisFilePath,groupArea,'halfSqKmAc', 'Figures');
+figureOutputFilePath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName, 'Figures');
 mkdir(figureOutputFilePath);
 
 %% Plot options
@@ -20,9 +20,12 @@ baseLevelOutlet =0;
 
 %% Input and output files
 
-allFilepath = fullfile(phAnalysisFilePath,groupArea,'halfSqKmAc','PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt')
-supercatchmentFilepath = fullfile(phAnalysisFilePath,groupArea,'halfSqKmAc','PHBs','Cusum02_BenchLength3Steps','AllSupercatchmentsTxt','Supercatchments')
-roiFileName = [groupName,'_allPHBs.txt']
+%allFilepath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'PHBs','Cusum02_BenchLength3Steps','Tales')
+%roiFileName = [groupName,'_allPHBs.txt']
+
+
+supercatchmentFilepath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'PHBs','Cusum02_BenchLength3Steps','Tables')
+
 
 
 allPHBs = dir(supercatchmentFilepath);
@@ -40,7 +43,8 @@ for i = 1:length(allPHBs)
 end
 
 
-%%
+%% Gather list of supercatchment tables to plot from folder
+
 targetList = 1:length(allPHBList)
 
 for i = 1:length(targetList) 
@@ -52,38 +56,40 @@ for i = 1:length(targetList)
     
    
     superWordLocation1 = strfind(fileName, 'Supercatchment');
-    superWordLocation2 = strfind(fileName, 'PHBs');
+    superWordLocation2 = strfind(fileName, '_all');
     inBetweenTextSuper = fileName(superWordLocation1+14:superWordLocation2-1);
-    superNum = str2double(inBetweenTextSuper); 
+    superNumFileList(i) = str2double(inBetweenTextSuper); 
     
-    %if(length(count)>i)
-    if(superNum == count)
+end
+
+%% Plot list of specified supers
+
+[~,targetSupersList] = find(superNumFileList==supercatchmentNum)
     
+for j = 1:length(targetSupersList)
     
-    supercatchmentFigureOutputFilePath = fullfile(phAnalysisFilePath,groupArea,'halfSqKmAc', 'Figures','SupercatchmentPHBs');
+    superNum = superNumFileList(targetSupersList(j));
+    supercatchmentFigureOutputFilePath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName, 'Figures','SupercatchmentPHBs');
     mkdir(supercatchmentFigureOutputFilePath);
     
     benchSuperFolderName = ['Supercatchment', num2str(superNum),'PHBs']
     benchSuperListName = ['Supercatchment', num2str(superNum),'_allOutletModePairs.txt'];
     benchSuperOutName = ['Supercatchment', num2str(superNum)];
-    phbOutletArray = dlmread(fullfile(supercatchmentFilepath,benchSuperFolderName, benchSuperListName),'\t',2);
+    phbOutletArray = dlmread(fullfile(supercatchmentFilepath, benchSuperListName),'\t',2);
 
-%%
-
-     modeOutletArray = phbOutletArray(:,[1,2]);
+    modeOutletArray = phbOutletArray(:,[1,2]);
     modeOutletArray(any(isnan(modeOutletArray), 2), :) = [];
     zeroIndices = find(modeOutletArray(:,2)==0);
     modeOutletArray(zeroIndices,:)=[];
-    
-    
+   
     [~, ia, ic]  = unique(phbOutletArray, 'rows');
     modeOutletArrayUnique = phbOutletArray(ia,[1,2]);
     zeroIndices = find(modeOutletArrayUnique(:,2)==0);
     modeOutletArrayUnique(zeroIndices,:)=[];
 
-%     modes = modeOutletArrayUnique(:,2)
-%     outlets = modeOutletArrayUnique(:,1)
-%     prunedDeltaH = modes-outlets;
+    %modes = modeOutletArrayUnique(:,2)
+    %outlets = modeOutletArrayUnique(:,1)
+    %prunedDeltaH = modes-outlets;
 
     modes = modeOutletArray(:,2)
     outlets = modeOutletArray(:,1)
@@ -157,7 +163,7 @@ for i = 1:length(targetList)
 
     
     end
-end
+
 
 
 
