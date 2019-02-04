@@ -116,13 +116,28 @@ for j = 1:length(targetSupersList)
     
 
     plot(outlets,modes,'.','color',plotColor,'MarkerSize', markerSize);
-
+    
     ylim([0 peakElevation]);
     xlim([0 peakElevation]);
 
 
     ylabel('Modal elevation [m]', 'Fontsize', 25, 'Fontweight', 'bold','Interpreter', 'none')
     xlabel('Outlet elevation [m]', 'Fontsize', 25, 'Fontweight', 'bold', 'Interpreter', 'none')
+    
+    reflineSeeds = linspace(0, peakElevation);
+    reflinePoints = linspace(0, peakElevation);
+    
+    upperSeeds = linspace(upperMode, peakElevation);
+    upperPoints = linspace(upperMode, peakElevation);
+    
+    lowerSeeds = linspace(0, peakElevation);
+    lowerPoints = linspace(0, peakElevation);
+    
+    plot(reflineSeeds, reflinePoints, 'Linewidth',1.5,'Color', black)
+    plot(reflineSeeds, reflinePoints+upperMode, 'Linewidth',1.5,'Color', redOrange)
+    plot(reflineSeeds, reflinePoints+lowerMode, 'Linewidth',1.5,'Color', blue)
+   
+    
     
     fig1Name = [benchSuperOutName,'_hBench_vs_hChange.png']
     fig1FilePath = fullfile(supercatchmentFigureOutputFilePath, fig1Name);
