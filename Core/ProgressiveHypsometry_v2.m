@@ -32,7 +32,7 @@ mkdir(highSubcatchmentDumpFile);
 
 for count =supercatchmentNum
     
-    clear streamProfileStruct
+    clear streamProfileStruct branchHypsometryStruct
     
     
     supercatchmentFileName = [groupArea,'Supercatchment',num2str(count),'.tif'];
@@ -57,22 +57,22 @@ for count =supercatchmentNum
 %% Build structure array of x,y,z of each chain (channel)
 
 
-for streamCount= 1:length(streamNetworkStruct)
-    
-    if(streamNetworkStruct(streamCount).streamorder==1)
-        
-        streamIndex = streamNetworkStruct(streamCount).IX;
-        
-        %Extract their profiles using longProfileGenerator
-        %Use only raw Z values (not smoothed)
-        [streamX, streamY, streamZ, ~, ~, ~] =...
-            longProfileGenerator(streamNetworkStruct, streamNetworkStreamObj, demGrid, streamIndex, streamNodeThreshNum);
-     
-        %Build struct with X,Y,Z for each streamline
-        streamProfileStruct(streamCount) = ...
-            struct('XCoords',streamX,'YCoords',streamY, 'Elevation', streamZ, 'StreamNum', streamIndex);
-    end
-end
+% for streamCount= 1:length(streamNetworkStruct)
+%     
+%     if(streamNetworkStruct(streamCount).streamorder==1)
+%         
+%         streamIndex = streamNetworkStruct(streamCount).IX;
+%         
+%         %Extract their profiles using longProfileGenerator
+%         %Use only raw Z values (not smoothed)
+%         [streamX, streamY, streamZ, ~, ~, ~] =...
+%             longProfileGenerator(streamNetworkStruct, streamNetworkStreamObj, demGrid, streamIndex, streamNodeThreshNum);
+%      
+%         %Build struct with X,Y,Z for each streamline
+%         streamProfileStruct(streamCount) = ...
+%             struct('XCoords',streamX,'YCoords',streamY, 'Elevation', streamZ, 'StreamNum', streamIndex);
+%     end
+% end
 
 
 %% Calculate hypsometry along each Branch
@@ -185,7 +185,7 @@ end
 
 for streamCount = 1:length(streamProfileStruct)
     
-    
+    clear steamLineZ
         
     streamNum = streamProfileStruct(streamCount).StreamNum;
     
@@ -197,9 +197,17 @@ for streamCount = 1:length(streamProfileStruct)
 
    % Make a list of target pourpoints based on total height drop of 
     numPourPointSteps = (maxStreamElevation - minStreamElevation)/pourPointElevationStep;
-    targetPourPointElevationList = (linspace(minStreamElevation, maxStreamElevation,numPourPointSteps ))';
-    targetPourPointElevationList = round(targetPourPointElevationList);
-    highSubcatchmentPourPoint = max(targetPourPointElevationList);
+    
+    if(numPourPointSteps<1)
+        
+        highSubcatchmentPourPoint=max(streamLineZ)
+    else
+        
+        targetPourPointElevationList = (linspace(minStreamElevation, maxStreamElevation,numPourPointSteps ))';
+        targetPourPointElevationList = round(targetPourPointElevationList);
+        
+        highSubcatchmentPourPoint = max(targetPourPointElevationList);
+    end
             
                     [closest, closestPourPointIndex] = ...
                         min(abs(streamLineZ - highSubcatchmentPourPoint));
