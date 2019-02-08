@@ -37,7 +37,8 @@ for count = supercatchmentNum
     
     %Output file path for PHB layer
     allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'PHBs', 'Cusum02_BenchLength3Steps','Maps');
-    
+    allSupercatchmentPHBTablePath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'PHBs', 'Cusum02_BenchLength3Steps','Tables');
+    supercatchmentTableName = ['Supercatchment', num2str(count), '_allOutletModePairs.txt'];
    %Ouput file path for polygon layer
     %allSupercatchmentPHBforPolygons = fullfile(phAnalysisFilePath,'Cusum02_BenchLength3Steps', 'AllSupercatchments_ForPolygons');
 
@@ -66,66 +67,31 @@ for count = supercatchmentNum
     streamNetworkStruct=STREAMobj2mapstruct(streamNetworkStreamObj);
     
 
-    %Get list of chains
-    clear firstOrderStreamPath firstOrderStreamList
-    
-    firstOrderStreamPath = dir(progressivePourPointSubcatchmentFilePath);
+    phbOutletArray = dlmread(fullfile(allSupercatchmentPHBTablePath, supercatchmentTableName),'\t',2);
 
-        for i = 1:length(firstOrderStreamPath)
-    
-            realFolder = strfind(firstOrderStreamPath(i).name,'Super')
-    
-            if(~isempty(realFolder))
-                firstOrderStreamList(i) = i;
-            end
-            
-        end
-    
-    firstOrderStreamList=firstOrderStreamList(firstOrderStreamList>0);
-
+    modeOutletArray = phbOutletArray(:,[1,2]);
+    modeOutletArray(any(isnan(modeOutletArray), 2), :) = [];
+    zeroIndices = find(modeOutletArray(:,2)==0);
+    modeOutletArray(zeroIndices,:)=[];
+   
+    [~, ia, ic]  = unique(modeOutletArray, 'rows');
+    modeOutletArrayUnique = phbOutletArray(ia,[1,2]);
+    phbOutletArrayUnique = phbOutletArray(ia,:)
 
     
 %% Find PHBs for each first order tributary in the supercatchment
 
     % Bring in (outlet, mode) pair for each PH chain
     
-    for highTributaryNum = 1:length(firstOrderStreamList)
-        clear allSubcatchmentDataArray hypsoPeakList outletList
-        
-        chainNum = firstOrderStreamList(highTributaryNum)
-        chainNumName = fullfile(progressivePourPointSubcatchmentFilePath, firstOrderStreamPath(chainNum).name)
-        allSubcatchmentDataArray= dlmread(chainNumName);
-            
-        streamNumFile = firstOrderStreamPath(chainNum).name;
-        word1Location = strfind(streamNumFile, 'Num');
-        word2Location = strfind(streamNumFile, '_Mode');
-        inBetweenText = streamNumFile(word1Location+3:word2Location-1);
-        streamNum = str2double(inBetweenText);
-
-        [outletList, orderedList] = sort(allSubcatchmentDataArray(:,1), 'ascend');
-        hypsoPeakList = allSubcatchmentDataArray(orderedList,2);
+   
+        for benchListNum = 1:length(phbOutletArrayUnique);
        
 
-        % Find PHBs
-        clear benchStruct benchEndPoints
+                streamNum = phbOutletArrayUnique(benchListNum,4)
         
-        % Get endpoints of PH benches
-        benchEndPoints = ProminentHypsoID(hypsoPeakList, cuSumThresh, minBenchLength);
-    
-        if(benchEndPoints>0)
-    
-            % Create a structure array of all PHBs
-            benchStruct = PHBID(benchEndPoints, outletList, hypsoPeakList, minBenchLength);
-    
-        if(~isempty(benchStruct))
-    
-        % Use PHB structure array to pull out all subcatchments
-
-            for benchListNum = 1: length(benchStruct)
-        
-                hypsoPeakElevation = round(min(benchStruct(benchListNum).HypsoPeaks));
-                benchOutletElevation = round(min(benchStruct(benchListNum).BenchOutlets));
-                maxBenchOutlet = max(benchStruct(benchListNum).BenchOutlets);
+                hypsoPeakElevation = round(min(phbOutletArrayUnique(benchListNum,2)));
+                benchOutletElevation = round(min(phbOutletArrayUnique(benchListNum,1)));
+                
                 deltaH = hypsoPeakElevation-benchOutletElevation;
        
                 benchOutletElevation = round(benchOutletElevation);
@@ -228,9 +194,7 @@ for count = supercatchmentNum
 
             end
         end
-        end
-    end
-end
+
 
 
 
