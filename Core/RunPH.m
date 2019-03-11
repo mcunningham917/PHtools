@@ -2,12 +2,13 @@
 
 %% Track variation in modal elevation along single chains
 
-ProgressiveHypsometry;
+ProgressiveHypsometry_v2;
 % 
 %% Identify and record PHBs
 %
 WritePHBtoTxt;
-WritePHBtoTiff;
+%WritePHBtoTiff_v2;
+%WriteAPHBtoTiff_v2;
 
 %% Plot results
 

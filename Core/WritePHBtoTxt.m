@@ -85,7 +85,11 @@ realFirstOrderStreamList=realFirstOrderStreamList(realFirstOrderStreamList>0);
     
             chainNum = realFirstOrderStreamList(highTributaryNum);
             chainNumName = fullfile(progressivePourPointSubcatchmentFilePath, firstOrderStreamList(chainNum).name);
+            fID = load(chainNumName);
+            if(~isempty(fID))
             allSubcatchmentDataArray= dlmread(chainNumName);
+            
+            
             
             streamNumFile = firstOrderStreamList(chainNum).name;
             word1Location = strfind(streamNumFile, 'Num');
@@ -139,6 +143,8 @@ realFirstOrderStreamList=realFirstOrderStreamList(realFirstOrderStreamList>0);
         end
         end
         end
+            else
+            end
         end
         
 %         sizeSupercatchmentPHBArray = size((supercatchmentPHBArray));

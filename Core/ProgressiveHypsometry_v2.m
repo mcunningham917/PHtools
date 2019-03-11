@@ -157,6 +157,8 @@ for allStreamCount = 1:length(streamNetworkStruct)
         if(exist('allSubcatchmentDataArray','var'))
          branchHyspometryStruct(allStreamCount) = struct('BranchId', streamNetworkStruct(allStreamCount).IX, 'Outlets', allSubcatchmentDataArray(:,1), 'Modes', allSubcatchmentDataArray(:,2))
          clear allSubcatchmentDataArray;
+        else
+             branchHyspometryStruct(allStreamCount) = struct('BranchId', streamNetworkStruct(allStreamCount).IX, 'Outlets', NaN, 'Modes', NaN)
         end
 end
 
@@ -388,6 +390,10 @@ allBranchModes = branchPHModes(sortIX);
 modeOutletArray = [allBranchOutlets,allBranchModes];
 [~, ia, ic]  = unique(modeOutletArray, 'rows');
 modeOutletArrayUnique = modeOutletArray(ia,[1,2]);
+nanIX = ~isnan(modeOutletArrayUnique(:,1));
+modeOutletArrayUnique = modeOutletArrayUnique(nanIX,[1,2]);
+clear nanIX
+
     
                 % Name output .txt file by Supercatchment number and chain number
     

@@ -95,7 +95,7 @@ for j = 1:length(targetSupersList)
     outlets = modeOutletArray(:,1)
     deltaH = modes-outlets;
     [deltaHProb, deltaHBinCenters,bw] = ksdensity(deltaH,'Support','positive','BoundaryCorrection','reflection');
-    [deltaHProb, deltaHBinCenters] = ksdensity(deltaH,'Support','positive','BoundaryCorrection','reflection','Bandwidth',bw*.5);
+    [deltaHProb, deltaHBinCenters] = ksdensity(deltaH,'Support','positive','BoundaryCorrection','reflection','Bandwidth',bw*.75);
 
     %modes = modeOutletArrayUnique(:,2)
     %outlets = modeOutletArrayUnique(:,1)
@@ -108,9 +108,9 @@ for j = 1:length(targetSupersList)
     figure(1)
     clf;
     hold on;
-    grid on
-    set(gca,'xtick',[0:peakElevation/4:peakElevation], 'Linewidth', 1.5)
-    set(gca,'ytick',[0:peakElevation/4:peakElevation], 'Linewidth', 1.5)
+    %grid on
+    set(gca,'xtick',[0:1000:peakElevation], 'Linewidth', 1.5)
+    set(gca,'ytick',[0:500:peakElevation], 'Linewidth', 1.5)
     set(gca,'fontname', 'Arial','FontSize',25, 'fontweight', 'bold')
     
     
@@ -127,15 +127,15 @@ for j = 1:length(targetSupersList)
     reflineSeeds = linspace(0, peakElevation);
     reflinePoints = linspace(0, peakElevation);
     
-    upperSeeds = linspace(upperMode, peakElevation);
-    upperPoints = linspace(upperMode, peakElevation);
-    
-    lowerSeeds = linspace(0, peakElevation);
-    lowerPoints = linspace(0, peakElevation);
+%     upperSeeds = linspace(upperMode, peakElevation);
+%     upperPoints = linspace(upperMode, peakElevation);
+%     
+%     lowerSeeds = linspace(0, peakElevation);
+%     lowerPoints = linspace(0, peakElevation);
     
     plot(reflineSeeds, reflinePoints, 'Linewidth',1.5,'Color', black)
-    plot(reflineSeeds, reflinePoints+upperMode, 'Linewidth',1.5,'Color', redOrange)
-    plot(reflineSeeds, reflinePoints+lowerMode, 'Linewidth',1.5,'Color', blue)
+    %plot(reflineSeeds, reflinePoints+upperMode, 'Linewidth',1.5,'Color', redOrange)
+    %plot(reflineSeeds, reflinePoints+lowerMode, 'Linewidth',1.5,'Color', blue)
    
     
     
@@ -144,34 +144,76 @@ for j = 1:length(targetSupersList)
     fig1 = gcf;
     saveas(fig1,fig1FilePath,outputFigType)
     
+%%
+
+%% Make deltaH plot
+
+    figure(2)
+    clf;
+    hold on;
+    %grid on
+    set(gca,'xtick',[0:1000:peakElevation], 'Linewidth', 1.5)
+    set(gca,'ytick',[0:500:pdfHeight], 'Linewidth', 1.5)
+    set(gca,'fontname', 'Arial','FontSize',25, 'fontweight', 'bold')
+    
+    
+
+    plot(outlets,(modes-outlets),'.','color',plotColor,'MarkerSize', markerSize);
+    
+    ylim([0 pdfHeight]);
+    xlim([0 peakElevation]);
+
+
+    ylabel('$${\Delta{h}}$$ [-]', 'Fontsize', 25,'Interpreter', 'latex','Fontweight', 'bold')
+    xlabel('Outlet elevation [m]', 'Fontsize', 25, 'Fontweight', 'bold', 'Interpreter', 'none')
+    
+    reflineSeeds = linspace(0, pdfHeight);
+    reflinePoints = linspace(0, pdfHeight);
+    
+%     upperSeeds = linspace(upperMode, peakElevation);
+%     upperPoints = linspace(upperMode, peakElevation);
+%     
+%     lowerSeeds = linspace(0, peakElevation);
+%     lowerPoints = linspace(0, peakElevation);
+    
+    %plot(reflineSeeds, reflinePoints, 'Linewidth',1.5,'Color', black)
+    %plot(reflineSeeds, reflinePoints+upperMode, 'Linewidth',1.5,'Color', redOrange)
+    %plot(reflineSeeds, reflinePoints+lowerMode, 'Linewidth',1.5,'Color', blue)
+   
+    
+    
+    fig2Name = [benchSuperOutName,'_hBench_vs_hChange.png']
+    fig2FilePath = fullfile(supercatchmentFigureOutputFilePath, fig2Name);
+    fig2 = gcf;
+    %saveas(fig1,fig1FilePath,outputFigType)
     
     
     %% Plot deltaH PDF
     
-    figure(2)
+    figure(3)
     clf;
     hold on;
-    grid on;
-    set(gca,'FontSize',18, 'fontweight', 'bold')
+    %grid on;
+    set(gca,'FontSize',25, 'fontweight', 'bold')
 
-    plot(deltaHProb, deltaHBinCenters, 'color', plotColor, 'Linewidth', 2)
+    plot(deltaHProb, deltaHBinCenters, 'color', plotColor, 'Linewidth', 3)
 
-    ylabel('$${\Delta{h}}$$ [-]', 'Fontsize', 25, 'Fontweight', 'normal','Interpreter', 'latex')
-    xlabel('p($${\Delta{h}}$$) ', 'Fontsize', 25, 'Fontweight', 'normal', 'Interpreter', 'latex')
+    ylabel('$${\Delta{h}}$$ [m]', 'Fontsize', 25, 'Fontweight', 'bold','Interpreter', 'latex')
+    xlabel('p($${\Delta{h}}$$) $$[m^{-1}]$$ ', 'Fontsize', 25, 'Fontweight', 'bold', 'Interpreter', 'latex')
     
     ylim([0 pdfHeight]);
     %xlim([0 peakElevation]);
 
 
 
-    % Save figure
+    %Save figure
 
 
 
-    fig2Name = [benchSuperOutName,'_deltaH_Distribution.png']
-    fig2FilePath = fullfile(supercatchmentFigureOutputFilePath, fig2Name);
-    fig2 = gcf;
-    saveas(fig2,fig2FilePath,outputFigType)
+    fig3Name = [benchSuperOutName,'_deltaH_Distribution.png']
+    fig3FilePath = fullfile(supercatchmentFigureOutputFilePath, fig3Name);
+    fig3 = gcf;
+    saveas(fig3,fig3FilePath,outputFigType)
 
 
 

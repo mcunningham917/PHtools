@@ -3,7 +3,7 @@ lightGreen = [.3 .8 .5]
 darkGreen = [.3 .5 .3] 
 
 salmon = [.9 .5 .5]
-orange = [1 .6 .3] 
+orange = [1 .4 .5] 
 redOrange = [.8 .3 .2] 
 red = [.9 .3 .3]
 blue = [.1 .2 .9]
