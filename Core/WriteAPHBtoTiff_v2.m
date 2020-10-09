@@ -9,7 +9,7 @@
 %% Set variables
 
 
-Defaults;
+%Defaults;
 addpath(topoToolboxFilePath); 
 
 minBenchLength; % In catchments, consecutive number of catchments with shared PH mode 
@@ -40,8 +40,8 @@ for count = supercatchmentNum
     allSupercatchmentPHBTablePath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'PHBs', 'Cusum02_BenchLength3Steps','Tables');
     supercatchmentTableName = ['Supercatchment', num2str(count), '_allOutletModePairs.txt'];
    %Ouput file path for polygon layer
-    polygonOutputFile = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'PHBs','Cusum02_BenchLength3Steps','Maps','Polygons_SymmetryBreaking',num2str(supercatchmentFileName));
-    tiffOutputFile = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'PHBs','Cusum02_BenchLength3Steps','Maps','Tiffs_SymmetryBreaking',num2str(supercatchmentFileName));
+    polygonOutputFile = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'PHBs','Cusum02_BenchLength3Steps','Maps','Polygons_Mode3Ex',num2str(supercatchmentFileName));
+    tiffOutputFile = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'PHBs','Cusum02_BenchLength3Steps','Maps','Tiffs_Mode3Ex',num2str(supercatchmentFileName));
 
     mkdir(allSupercatchmentPHBfilePath);
     mkdir(polygonOutputFile);
@@ -99,7 +99,7 @@ for count = supercatchmentNum
                 benchOutletElevation = round(benchOutletElevation);
                 targetPourPointElevation = benchOutletElevation;
                 
-                if(deltaH>lowerDeltaH && deltaH<upperDeltaH)
+                if(deltaH >=lowerDeltaH && deltaH<= upperDeltaH)
     
                 [profileX, profileY, profileZ,~, ~, ~] =...
                     longProfileGenerator(streamNetworkStruct, streamNetworkStreamObj,supercatchmentDemGrid, streamNum, streamNodeThreshNum);
@@ -134,7 +134,7 @@ for count = supercatchmentNum
                         supercatchmentDEMArrayForPHB(hypsoPeakElevationIndices)=hypsoPeakElevation;
                         supercatchmentDEMArrayForDeltaH(hypsoPeakElevationIndices)=deltaH;
                         
-                         hypsoPeakToDivideIndices = find(finalDrainageBasinArray>=(hypsoPeakElevation));
+                        hypsoPeakToDivideIndices = find(finalDrainageBasinArray>=(hypsoPeakElevation));
                         hypsoPeakToDivideArray = finalDrainageBasinArray;
                         hypsoPeakToDivideArray(hypsoPeakToDivideIndices)=hypsoPeakElevation;
                         finalDrainageBasinArray(finalDrainageBasinArray<hypsoPeakElevation & finalDrainageBasinArray>0) = 1;
@@ -147,6 +147,8 @@ for count = supercatchmentNum
                         finalDrainageBasinArray(aboveHypsoPeakElevationIndices) = 1;
             
                         aboveAndBelowHypsoPeakArray = finalDrainageBasinArray;
+                        aboveAndBelowHypsoPeakArrayPHB = aboveAndBelowHypsoPeakArray;
+                        aboveAndBelowHypsoPeakArrayPHB(hypsoPeakElevationIndices)=hypsoPeakElevation;
                         polygonOutputFileName = ['HypsoPeak', num2str(hypsoPeakElevation),'PourPointElevation',num2str(benchOutletElevation),...
                             'Supercatchment',num2str(streamSupercatchment),'StreamNum',num2str(streamNum)];
                        
@@ -210,6 +212,8 @@ for count = supercatchmentNum
                         finalDrainageBasinArray(aboveHypsoPeakElevationIndices) = 1;
             
                         aboveAndBelowHypsoPeakArray = finalDrainageBasinArray;
+                        aboveAndBelowHypsoPeakArrayPHB = aboveAndBelowHypsoPeakArray;
+                        aboveAndBelowHypsoPeakArrayPHB(hypsoPeakElevationIndices)=hypsoPeakElevation;
                         polygonOutputFileName = ['HypsoPeak', num2str(hypsoPeakElevation),'PourPointElevation',num2str(benchOutletElevation),...
                             'Supercatchment',num2str(streamSupercatchment),'StreamNum',num2str(streamNum)];
                     
@@ -236,7 +240,7 @@ for count = supercatchmentNum
 %                                 nanFlag, deltaHfullOutputFileForMaster);
                    SubcatchmentWrite(aboveAndBelowHypsoPeakArray, supercatchmentGeospatialReferenceArray,supercatchmentDemInfo,...
                                 nanFlag, polygonOutputFilePath); 
-                   SubcatchmentWrite(aboveAndBelowHypsoPeakArray, supercatchmentGeospatialReferenceArray,supercatchmentDemInfo,...
+                   SubcatchmentWrite(aboveAndBelowHypsoPeakArrayPHB, supercatchmentGeospatialReferenceArray,supercatchmentDemInfo,...
                                 nanFlag, tiffOutputFilePath); 
                             
             end

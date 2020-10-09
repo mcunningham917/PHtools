@@ -11,3 +11,5 @@ tiDengSek =[0 .6 1]
 brown =[.7, .5,.4]
 grey = [.7,.7,.7]
 black = [.1,.1,.1]
+
+yellow = [1 .4 .5] 

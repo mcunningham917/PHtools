@@ -117,8 +117,8 @@ for j = 1:length(targetSupersList)
 
     plot(outlets,modes,'.','color',plotColor,'MarkerSize', markerSize);
     
-    ylim([0 peakElevation]);
-    xlim([0 peakElevation]);
+    ylim([1800 peakElevation]);
+    xlim([1800 peakElevation]);
 
 
     ylabel('Modal elevation [m]', 'Fontsize', 25, 'Fontweight', 'bold','Interpreter', 'none')

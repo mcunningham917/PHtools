@@ -237,7 +237,7 @@ for streamCount = 1:length(streamProfileStruct)
                subcatchmentDEMVec = subcatchmentDemArray(~isnan(subcatchmentDemArray));
                superDemVec = demArray(~isnan(demArray));
                
-               if(((length(subcatchmentDEMVec)/length(superDemVec))<0.25))
+               if(((length(subcatchmentDEMVec)/length(superDemVec))<0.1))
                 
               
         
