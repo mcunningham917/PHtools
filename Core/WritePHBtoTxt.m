@@ -34,7 +34,7 @@ for count = supercatchmentNum
     progressivePourPointSubcatchmentFilePath = fullfile(fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'Subcatchments',subcatchmentFolderName, num2str(supercatchmentFileName)));
     
     %Output file path for PHB layer
-    %allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'PHBs','Cusum02_BenchLength3Steps','Tables');
+    %allSupercatchmentPHBfilePath = fullfile(phAnalysisFilePath,groupArea,AcSubFolderName,'PHBs','Cusum01_BenchLength3Steps','Tables');
     %outputFileNameROI = [groupName,'_allPHBs.txt'];
     
     outputFileName = [supercatchmentFileName,'_allOutletModePairs.txt'];
@@ -54,7 +54,7 @@ for count = supercatchmentNum
     demSinksFilled = fillsinks(supercatchmentDemGrid);
     flowDirectionObj = FLOWobj(demSinksFilled);
     flowAccumulationStruct  = flowacc(flowDirectionObj);
-    streamNodeThreshNum=areaThreshPixelNum; 
+    streamNodeThreshNum=Ac; 
     streamNodeThreshold = flowAccumulationStruct>streamNodeThreshNum;
     streamNetworkStreamObj = STREAMobj(flowDirectionObj,streamNodeThreshold);
     streamNetworkStruct=STREAMobj2mapstruct(streamNetworkStreamObj);
@@ -134,7 +134,7 @@ realFirstOrderStreamList=realFirstOrderStreamList(realFirstOrderStreamList>0);
                     fullOutputFileForSuper = fullfile(SupercatchmentBenchFiles, outputFileName);
 
                     columnNames = {'Outlets','Modes','Supercatchment', 'StreamID'};
-                    supercatchmentOutTable = array2table(supercatchmentPHBArray,'VariableNames',columnNames)
+                    supercatchmentOutTable = array2table(supercatchmentPHBArray,'VariableNames',columnNames);
                     writetable(supercatchmentOutTable, fullOutputFileForSuper, 'Delimiter','\t');
                
                    

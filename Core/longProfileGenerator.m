@@ -77,7 +77,7 @@ for allTribsCount = 1:length(allTribFields)
            streamProfileStruct(allTribsCount) = struct('XCoords',tribX,'YCoords',tribY, 'Elevation', tribZ, 'Index', tribIX);
        else
           
-           upstreamElevation = vertcat(streamProfileStruct.Elevation)
+           upstreamElevation = vertcat(streamProfileStruct.Elevation);
   
                upstreamTribMinElevation = min(upstreamElevation);
                excessElevation=upstreamTribMinElevation-tribZ;
@@ -112,7 +112,7 @@ distanceIndex = streamNetworkStreamObj.IXgrid(ismember(streamNetworkStreamObj.IX
 d = streamNetworkStreamObj.distance(streamObjIX);
 [~, zIX] = intersect(fullStreamIX, distanceIndex);
 z = zRaw(zIX);
-[ix,~,~] = coord2ind(demArrayX,demArrayY,x,y)
+[ix,~,~] = coord2ind(demArrayX,demArrayY,x,y);
 
 %%
  

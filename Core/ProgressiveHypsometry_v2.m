@@ -74,7 +74,6 @@ for count =supercatchmentNum
 %     end
 % end
 
-
 %% Calculate hypsometry along each Branch
 
 for allStreamCount = 1:length(streamNetworkStruct)
@@ -88,9 +87,11 @@ for allStreamCount = 1:length(streamNetworkStruct)
         branchIX = coord2ind(demGrid,branchX,branchY);
         branchIX = branchIX(1:(length(branchIX)));
         branchZ = demArray(branchIX);
+        branchZSmooth = smooth(branchZ,31, 'moving');
         
-        maxStreamElevation = max(branchZ); % Elevation of defined channel head
-        minStreamElevation = min(branchZ);
+        maxStreamElevation = max(branchZSmooth); % Elevation of defined channel head
+        minStreamElevation = min(branchZSmooth);
+        
         
         % Make a list of target pourpoints based on total height drop of 
         numPourPointSteps = (maxStreamElevation - minStreamElevation)/pourPointElevationStep;
@@ -102,12 +103,12 @@ for allStreamCount = 1:length(streamNetworkStruct)
     
                     targetPourPointElevation = targetPourPointElevationList(stepNum,1)
                     [closest, closestPourPointIndex] = ...
-                        min(abs(branchZ - targetPourPointElevationList(stepNum)));
+                        min(abs(branchZSmooth - targetPourPointElevationList(stepNum)));
     
                     subcatchmentOutlet =...
                         [branchX(closestPourPointIndex),branchY(closestPourPointIndex)]; 
                     
-                    finalOutletElevation = round(branchZ(closestPourPointIndex));
+                    finalOutletElevation = round(branchZSmooth(closestPourPointIndex));
 
                     %Extract DEM of drainage basins based list of evenly spaced pour points
 
@@ -158,7 +159,7 @@ for allStreamCount = 1:length(streamNetworkStruct)
          branchHyspometryStruct(allStreamCount) = struct('BranchId', streamNetworkStruct(allStreamCount).IX, 'Outlets', allSubcatchmentDataArray(:,1), 'Modes', allSubcatchmentDataArray(:,2))
          clear allSubcatchmentDataArray;
         else
-             branchHyspometryStruct(allStreamCount) = struct('BranchId', streamNetworkStruct(allStreamCount).IX, 'Outlets', NaN, 'Modes', NaN)
+             branchHyspometryStruct(allStreamCount) = struct('BranchId', streamNetworkStruct(allStreamCount).IX, 'Outlets', NaN, 'Modes', NaN);
         end
 end
 
@@ -174,12 +175,12 @@ for streamCount= 1:length(streamNetworkStruct)
         
         %Extract their profiles using longProfileGenerator
         %Use only raw Z values (not smoothed)
-        [streamX, streamY, streamZ, ~, ~, ~] =...
-            longProfileGenerator(streamNetworkStruct, streamNetworkStreamObj, demGrid, streamIndex, streamNodeThreshNum);
+        [streamX, streamY, streamZ, streamD, ~] =...
+            longProfileGenerator_v2(streamNetworkStruct, streamNetworkStreamObj, demGrid, streamIndex, streamNodeThreshNum);
      
         %Build struct with X,Y,Z for each streamline
         streamProfileStruct(streamCount) = ...
-            struct('XCoords',streamX,'YCoords',streamY, 'Elevation', streamZ, 'StreamNum', streamIndex);
+            struct('XCoords',streamX,'YCoords',streamY, 'Elevation', streamZ, 'Distance', streamD,'StreamNum', streamIndex);
     end
 end
 
